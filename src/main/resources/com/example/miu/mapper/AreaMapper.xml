@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.miu.mapper.WifiRecordMapper" >
-  <resultMap id="BaseResultMap" type="com.example.miu.pojo.table.WifiRecord" >
+<mapper namespace="com.example.miu.mapper.AreaMapper" >
+  <resultMap id="BaseResultMap" type="com.example.miu.pojo.table.Area" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="area_id" property="areaId" jdbcType="INTEGER" />
-    <result column="x" property="x" jdbcType="REAL" />
-    <result column="y" property="y" jdbcType="REAL" />
-    <result column="aps" property="aps" jdbcType="VARCHAR" />
-    <result column="strength" property="strength" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="photo_path" property="photoPath" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, area_id, x, y, aps, strength
+    id, name, description, photo_path
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.miu.pojo.table.WifiRecordExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.miu.pojo.table.AreaExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from wifi_record
+    from area
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,94 +85,76 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from wifi_record
+    from area
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from wifi_record
+    delete from area
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.miu.pojo.table.WifiRecordExample" >
-    delete from wifi_record
+  <delete id="deleteByExample" parameterType="com.example.miu.pojo.table.AreaExample" >
+    delete from area
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.miu.pojo.table.WifiRecord" >
-    insert into wifi_record (id, area_id, x, y, 
-      aps, strength)
-    values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{x,jdbcType=REAL}, #{y,jdbcType=REAL}, 
-      #{aps,jdbcType=VARCHAR}, #{strength,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.example.miu.pojo.table.Area" >
+    insert into area (id, name, description, 
+      photo_path)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{photoPath,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.WifiRecord" >
-    insert into wifi_record
+  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.Area" >
+    insert into area
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="areaId != null" >
-        area_id,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="x != null" >
-        x,
+      <if test="description != null" >
+        description,
       </if>
-      <if test="y != null" >
-        y,
-      </if>
-      <if test="aps != null" >
-        aps,
-      </if>
-      <if test="strength != null" >
-        strength,
+      <if test="photoPath != null" >
+        photo_path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="areaId != null" >
-        #{areaId,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="x != null" >
-        #{x,jdbcType=REAL},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
-      <if test="y != null" >
-        #{y,jdbcType=REAL},
-      </if>
-      <if test="aps != null" >
-        #{aps,jdbcType=VARCHAR},
-      </if>
-      <if test="strength != null" >
-        #{strength,jdbcType=VARCHAR},
+      <if test="photoPath != null" >
+        #{photoPath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.miu.pojo.table.WifiRecordExample" resultType="java.lang.Integer" >
-    select count(*) from wifi_record
+  <select id="countByExample" parameterType="com.example.miu.pojo.table.AreaExample" resultType="java.lang.Integer" >
+    select count(*) from area
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update wifi_record
+    update area
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.areaId != null" >
-        area_id = #{record.areaId,jdbcType=INTEGER},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.x != null" >
-        x = #{record.x,jdbcType=REAL},
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.y != null" >
-        y = #{record.y,jdbcType=REAL},
-      </if>
-      <if test="record.aps != null" >
-        aps = #{record.aps,jdbcType=VARCHAR},
-      </if>
-      <if test="record.strength != null" >
-        strength = #{record.strength,jdbcType=VARCHAR},
+      <if test="record.photoPath != null" >
+        photo_path = #{record.photoPath,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -182,45 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update wifi_record
+    update area
     set id = #{record.id,jdbcType=INTEGER},
-      area_id = #{record.areaId,jdbcType=INTEGER},
-      x = #{record.x,jdbcType=REAL},
-      y = #{record.y,jdbcType=REAL},
-      aps = #{record.aps,jdbcType=VARCHAR},
-      strength = #{record.strength,jdbcType=VARCHAR}
+      name = #{record.name,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      photo_path = #{record.photoPath,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.miu.pojo.table.WifiRecord" >
-    update wifi_record
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.miu.pojo.table.Area" >
+    update area
     <set >
-      <if test="areaId != null" >
-        area_id = #{areaId,jdbcType=INTEGER},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="x != null" >
-        x = #{x,jdbcType=REAL},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="y != null" >
-        y = #{y,jdbcType=REAL},
-      </if>
-      <if test="aps != null" >
-        aps = #{aps,jdbcType=VARCHAR},
-      </if>
-      <if test="strength != null" >
-        strength = #{strength,jdbcType=VARCHAR},
+      <if test="photoPath != null" >
+        photo_path = #{photoPath,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.miu.pojo.table.WifiRecord" >
-    update wifi_record
-    set area_id = #{areaId,jdbcType=INTEGER},
-      x = #{x,jdbcType=REAL},
-      y = #{y,jdbcType=REAL},
-      aps = #{aps,jdbcType=VARCHAR},
-      strength = #{strength,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.example.miu.pojo.table.Area" >
+    update area
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      photo_path = #{photoPath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
