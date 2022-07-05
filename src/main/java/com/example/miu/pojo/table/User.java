@@ -1,13 +1,27 @@
 package com.example.miu.pojo.table;
 
 public class User {
+    private Integer id;
+
     private String username;
 
     private String password;
 
     private String email;
 
+    private String photoPath;
+
     private Byte gender;
+
+    private String description;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -33,11 +47,27 @@ public class User {
         this.email = email == null ? null : email.trim();
     }
 
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath == null ? null : photoPath.trim();
+    }
+
     public Byte getGender() {
         return gender;
     }
 
     public void setGender(Byte gender) {
         this.gender = gender;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

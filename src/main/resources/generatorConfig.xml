@@ -39,8 +39,10 @@
         <!-- domainObjectName属性指定生成出来的实体类的类名 -->
 <!--        <table tableName="wifi_record" domainObjectName="WifiRecord"/>-->
 <!--        <table tableName="ap" domainObjectName="Ap"/>-->
-        <table tableName="area" domainObjectName="Area"/>
-<!--        <table tableName="user" domainObjectName="User"/>-->
+<!--        <table tableName="area" domainObjectName="Area"/>-->
+        <table tableName="user" domainObjectName="User"/>
+<!--        <table tableName="tag" domainObjectName="Tag"/>-->
+<!--        <table tableName="tag_user_comment" domainObjectName="CommentOfTag"/>-->
 
 
     </context>
