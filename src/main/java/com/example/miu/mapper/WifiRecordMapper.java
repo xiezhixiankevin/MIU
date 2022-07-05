@@ -4,7 +4,9 @@ import com.example.miu.pojo.table.WifiRecord;
 import com.example.miu.pojo.table.WifiRecordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface WifiRecordMapper {
     int countByExample(WifiRecordExample example);
 
