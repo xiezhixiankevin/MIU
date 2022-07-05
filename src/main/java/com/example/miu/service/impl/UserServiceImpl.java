@@ -1,6 +1,5 @@
 package com.example.miu.service.impl;
 
-import com.example.miu.pojo.table.User;
 import com.example.miu.service.UserService;
 import org.springframework.stereotype.Service;
 
