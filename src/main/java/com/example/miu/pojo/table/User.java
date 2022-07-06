@@ -11,11 +11,11 @@ public class User {
 
     private String photoPath;
 
-    private Byte gender;
+    private Boolean gender;
 
     private String description;
 
-    private Byte ifShare;
+    private Boolean ifShare;
 
     public Integer getId() {
         return id;
@@ -57,11 +57,11 @@ public class User {
         this.photoPath = photoPath == null ? null : photoPath.trim();
     }
 
-    public Byte getGender() {
+    public Boolean getGender() {
         return gender;
     }
 
-    public void setGender(Byte gender) {
+    public void setGender(Boolean gender) {
         this.gender = gender;
     }
 
@@ -73,11 +73,11 @@ public class User {
         this.description = description == null ? null : description.trim();
     }
 
-    public Byte getIfShare() {
+    public Boolean getIfShare() {
         return ifShare;
     }
 
-    public void setIfShare(Byte ifShare) {
+    public void setIfShare(Boolean ifShare) {
         this.ifShare = ifShare;
     }
 }

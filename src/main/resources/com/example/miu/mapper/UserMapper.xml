@@ -7,9 +7,9 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="photo_path" property="photoPath" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="gender" property="gender" jdbcType="BIT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="if_share" property="ifShare" jdbcType="TINYINT" />
+    <result column="if_share" property="ifShare" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -107,8 +107,8 @@
       email, photo_path, gender, 
       description, if_share)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{photoPath,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
-      #{description,jdbcType=VARCHAR}, #{ifShare,jdbcType=TINYINT})
+      #{email,jdbcType=VARCHAR}, #{photoPath,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
+      #{description,jdbcType=VARCHAR}, #{ifShare,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.example.miu.pojo.table.User" >
     insert into user
@@ -155,13 +155,13 @@
         #{photoPath,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
-        #{gender,jdbcType=TINYINT},
+        #{gender,jdbcType=BIT},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
       </if>
       <if test="ifShare != null" >
-        #{ifShare,jdbcType=TINYINT},
+        #{ifShare,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -190,13 +190,13 @@
         photo_path = #{record.photoPath,jdbcType=VARCHAR},
       </if>
       <if test="record.gender != null" >
-        gender = #{record.gender,jdbcType=TINYINT},
+        gender = #{record.gender,jdbcType=BIT},
       </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.ifShare != null" >
-        if_share = #{record.ifShare,jdbcType=TINYINT},
+        if_share = #{record.ifShare,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -210,9 +210,9 @@
       password = #{record.password,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       photo_path = #{record.photoPath,jdbcType=VARCHAR},
-      gender = #{record.gender,jdbcType=TINYINT},
+      gender = #{record.gender,jdbcType=BIT},
       description = #{record.description,jdbcType=VARCHAR},
-      if_share = #{record.ifShare,jdbcType=TINYINT}
+      if_share = #{record.ifShare,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -233,13 +233,13 @@
         photo_path = #{photoPath,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
-        gender = #{gender,jdbcType=TINYINT},
+        gender = #{gender,jdbcType=BIT},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="ifShare != null" >
-        if_share = #{ifShare,jdbcType=TINYINT},
+        if_share = #{ifShare,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -250,9 +250,9 @@
       password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       photo_path = #{photoPath,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=BIT},
       description = #{description,jdbcType=VARCHAR},
-      if_share = #{ifShare,jdbcType=TINYINT}
+      if_share = #{ifShare,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
