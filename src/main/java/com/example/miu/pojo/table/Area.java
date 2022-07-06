@@ -5,9 +5,13 @@ public class Area {
 
     private String name;
 
-    private String description;
+    private String longDescription;
 
     private String photoPath;
+
+    private String shortDescription;
+
+    private String imagePath;
 
     public Integer getId() {
         return id;
@@ -25,12 +29,12 @@ public class Area {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDescription() {
-        return description;
+    public String getLongDescription() {
+        return longDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription == null ? null : longDescription.trim();
     }
 
     public String getPhotoPath() {
@@ -39,5 +43,21 @@ public class Area {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath == null ? null : photoPath.trim();
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription == null ? null : shortDescription.trim();
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath == null ? null : imagePath.trim();
     }
 }

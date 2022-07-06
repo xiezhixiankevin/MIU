@@ -4,8 +4,10 @@
   <resultMap id="BaseResultMap" type="com.example.miu.pojo.table.Area" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="long_description" property="longDescription" jdbcType="VARCHAR" />
     <result column="photo_path" property="photoPath" jdbcType="VARCHAR" />
+    <result column="short_description" property="shortDescription" jdbcType="VARCHAR" />
+    <result column="image_path" property="imagePath" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, description, photo_path
+    id, name, long_description, photo_path, short_description, image_path
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.miu.pojo.table.AreaExample" >
     select
@@ -99,10 +101,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.miu.pojo.table.Area" >
-    insert into area (id, name, description, 
-      photo_path)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{photoPath,jdbcType=VARCHAR})
+    insert into area (id, name, long_description, 
+      photo_path, short_description, image_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{longDescription,jdbcType=VARCHAR}, 
+      #{photoPath,jdbcType=VARCHAR}, #{shortDescription,jdbcType=VARCHAR}, #{imagePath,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.miu.pojo.table.Area" >
     insert into area
@@ -113,11 +117,17 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="description != null" >
-        description,
+      <if test="longDescription != null" >
+        long_description,
       </if>
       <if test="photoPath != null" >
         photo_path,
+      </if>
+      <if test="shortDescription != null" >
+        short_description,
+      </if>
+      <if test="imagePath != null" >
+        image_path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -127,11 +137,17 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
+      <if test="longDescription != null" >
+        #{longDescription,jdbcType=VARCHAR},
       </if>
       <if test="photoPath != null" >
         #{photoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="shortDescription != null" >
+        #{shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null" >
+        #{imagePath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -150,11 +166,17 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.longDescription != null" >
+        long_description = #{record.longDescription,jdbcType=VARCHAR},
       </if>
       <if test="record.photoPath != null" >
         photo_path = #{record.photoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortDescription != null" >
+        short_description = #{record.shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imagePath != null" >
+        image_path = #{record.imagePath,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -165,8 +187,10 @@
     update area
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
-      photo_path = #{record.photoPath,jdbcType=VARCHAR}
+      long_description = #{record.longDescription,jdbcType=VARCHAR},
+      photo_path = #{record.photoPath,jdbcType=VARCHAR},
+      short_description = #{record.shortDescription,jdbcType=VARCHAR},
+      image_path = #{record.imagePath,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,11 +201,17 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
+      <if test="longDescription != null" >
+        long_description = #{longDescription,jdbcType=VARCHAR},
       </if>
       <if test="photoPath != null" >
         photo_path = #{photoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="shortDescription != null" >
+        short_description = #{shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null" >
+        image_path = #{imagePath,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -189,8 +219,10 @@
   <update id="updateByPrimaryKey" parameterType="com.example.miu.pojo.table.Area" >
     update area
     set name = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      photo_path = #{photoPath,jdbcType=VARCHAR}
+      long_description = #{longDescription,jdbcType=VARCHAR},
+      photo_path = #{photoPath,jdbcType=VARCHAR},
+      short_description = #{shortDescription,jdbcType=VARCHAR},
+      image_path = #{imagePath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,8 +1,6 @@
 package com.example.miu.service.impl;
 
 import com.example.miu.mapper.WifiRecordMapper;
-import com.example.miu.pojo.table.Ap;
-import com.example.miu.pojo.table.Area;
 import com.example.miu.pojo.table.WifiRecord;
 import com.example.miu.service.WifiRecordService;
 import com.example.miu.utils.Global;

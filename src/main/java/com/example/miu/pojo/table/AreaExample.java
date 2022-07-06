@@ -234,73 +234,73 @@ public class AreaExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNull() {
-            addCriterion("description is null");
+        public Criteria andLongDescriptionIsNull() {
+            addCriterion("long_description is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIsNotNull() {
-            addCriterion("description is not null");
+        public Criteria andLongDescriptionIsNotNull() {
+            addCriterion("long_description is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionEqualTo(String value) {
-            addCriterion("description =", value, "description");
+        public Criteria andLongDescriptionEqualTo(String value) {
+            addCriterion("long_description =", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotEqualTo(String value) {
-            addCriterion("description <>", value, "description");
+        public Criteria andLongDescriptionNotEqualTo(String value) {
+            addCriterion("long_description <>", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThan(String value) {
-            addCriterion("description >", value, "description");
+        public Criteria andLongDescriptionGreaterThan(String value) {
+            addCriterion("long_description >", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
-            addCriterion("description >=", value, "description");
+        public Criteria andLongDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("long_description >=", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThan(String value) {
-            addCriterion("description <", value, "description");
+        public Criteria andLongDescriptionLessThan(String value) {
+            addCriterion("long_description <", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLessThanOrEqualTo(String value) {
-            addCriterion("description <=", value, "description");
+        public Criteria andLongDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("long_description <=", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionLike(String value) {
-            addCriterion("description like", value, "description");
+        public Criteria andLongDescriptionLike(String value) {
+            addCriterion("long_description like", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotLike(String value) {
-            addCriterion("description not like", value, "description");
+        public Criteria andLongDescriptionNotLike(String value) {
+            addCriterion("long_description not like", value, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionIn(List<String> values) {
-            addCriterion("description in", values, "description");
+        public Criteria andLongDescriptionIn(List<String> values) {
+            addCriterion("long_description in", values, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotIn(List<String> values) {
-            addCriterion("description not in", values, "description");
+        public Criteria andLongDescriptionNotIn(List<String> values) {
+            addCriterion("long_description not in", values, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionBetween(String value1, String value2) {
-            addCriterion("description between", value1, value2, "description");
+        public Criteria andLongDescriptionBetween(String value1, String value2) {
+            addCriterion("long_description between", value1, value2, "longDescription");
             return (Criteria) this;
         }
 
-        public Criteria andDescriptionNotBetween(String value1, String value2) {
-            addCriterion("description not between", value1, value2, "description");
+        public Criteria andLongDescriptionNotBetween(String value1, String value2) {
+            addCriterion("long_description not between", value1, value2, "longDescription");
             return (Criteria) this;
         }
 
@@ -371,6 +371,146 @@ public class AreaExample {
 
         public Criteria andPhotoPathNotBetween(String value1, String value2) {
             addCriterion("photo_path not between", value1, value2, "photoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionIsNull() {
+            addCriterion("short_description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionIsNotNull() {
+            addCriterion("short_description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionEqualTo(String value) {
+            addCriterion("short_description =", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionNotEqualTo(String value) {
+            addCriterion("short_description <>", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionGreaterThan(String value) {
+            addCriterion("short_description >", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("short_description >=", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionLessThan(String value) {
+            addCriterion("short_description <", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("short_description <=", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionLike(String value) {
+            addCriterion("short_description like", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionNotLike(String value) {
+            addCriterion("short_description not like", value, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionIn(List<String> values) {
+            addCriterion("short_description in", values, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionNotIn(List<String> values) {
+            addCriterion("short_description not in", values, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionBetween(String value1, String value2) {
+            addCriterion("short_description between", value1, value2, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andShortDescriptionNotBetween(String value1, String value2) {
+            addCriterion("short_description not between", value1, value2, "shortDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathIsNull() {
+            addCriterion("image_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathIsNotNull() {
+            addCriterion("image_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathEqualTo(String value) {
+            addCriterion("image_path =", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotEqualTo(String value) {
+            addCriterion("image_path <>", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathGreaterThan(String value) {
+            addCriterion("image_path >", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathGreaterThanOrEqualTo(String value) {
+            addCriterion("image_path >=", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathLessThan(String value) {
+            addCriterion("image_path <", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathLessThanOrEqualTo(String value) {
+            addCriterion("image_path <=", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathLike(String value) {
+            addCriterion("image_path like", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotLike(String value) {
+            addCriterion("image_path not like", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathIn(List<String> values) {
+            addCriterion("image_path in", values, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotIn(List<String> values) {
+            addCriterion("image_path not in", values, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathBetween(String value1, String value2) {
+            addCriterion("image_path between", value1, value2, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotBetween(String value1, String value2) {
+            addCriterion("image_path not between", value1, value2, "imagePath");
             return (Criteria) this;
         }
     }

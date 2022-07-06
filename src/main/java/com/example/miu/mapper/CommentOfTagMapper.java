@@ -4,7 +4,9 @@ import com.example.miu.pojo.table.CommentOfTag;
 import com.example.miu.pojo.table.CommentOfTagExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CommentOfTagMapper {
     int countByExample(CommentOfTagExample example);
 

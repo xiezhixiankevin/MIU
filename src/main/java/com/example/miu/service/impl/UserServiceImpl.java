@@ -1,7 +1,11 @@
 package com.example.miu.service.impl;
 
 import com.example.miu.pojo.table.User;
+
+import com.example.miu.mapper.UserMapper;
+import com.example.miu.pojo.table.UserExample;
 import com.example.miu.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +22,10 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public User registerUser(User user) {
         return null;
@@ -35,11 +43,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> listUser() {
-        return null;
+        return userMapper.selectByExample(null);
     }
 
     @Override
     public List<User> listUserSelective(User user) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        if (user.getGender() != null){
+            criteria.andGenderEqualTo(user.getGender());
+        }
         return null;
     }
 

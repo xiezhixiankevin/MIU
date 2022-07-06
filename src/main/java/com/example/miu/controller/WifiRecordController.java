@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @see com.example.miu.controller
  */
 @RequestMapping("/wifiRecord")
+@ResponseBody
 @Controller
 public class WifiRecordController {
 

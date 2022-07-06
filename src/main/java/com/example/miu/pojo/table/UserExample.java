@@ -454,52 +454,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andGenderEqualTo(Byte value) {
+        public Criteria andGenderEqualTo(Boolean value) {
             addCriterion("gender =", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotEqualTo(Byte value) {
+        public Criteria andGenderNotEqualTo(Boolean value) {
             addCriterion("gender <>", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThan(Byte value) {
+        public Criteria andGenderGreaterThan(Boolean value) {
             addCriterion("gender >", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThanOrEqualTo(Byte value) {
+        public Criteria andGenderGreaterThanOrEqualTo(Boolean value) {
             addCriterion("gender >=", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThan(Byte value) {
+        public Criteria andGenderLessThan(Boolean value) {
             addCriterion("gender <", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThanOrEqualTo(Byte value) {
+        public Criteria andGenderLessThanOrEqualTo(Boolean value) {
             addCriterion("gender <=", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderIn(List<Byte> values) {
+        public Criteria andGenderIn(List<Boolean> values) {
             addCriterion("gender in", values, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotIn(List<Byte> values) {
+        public Criteria andGenderNotIn(List<Boolean> values) {
             addCriterion("gender not in", values, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderBetween(Byte value1, Byte value2) {
+        public Criteria andGenderBetween(Boolean value1, Boolean value2) {
             addCriterion("gender between", value1, value2, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotBetween(Byte value1, Byte value2) {
+        public Criteria andGenderNotBetween(Boolean value1, Boolean value2) {
             addCriterion("gender not between", value1, value2, "gender");
             return (Criteria) this;
         }
@@ -571,6 +571,66 @@ public class UserExample {
 
         public Criteria andDescriptionNotBetween(String value1, String value2) {
             addCriterion("description not between", value1, value2, "description");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareIsNull() {
+            addCriterion("if_share is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareIsNotNull() {
+            addCriterion("if_share is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareEqualTo(Boolean value) {
+            addCriterion("if_share =", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareNotEqualTo(Boolean value) {
+            addCriterion("if_share <>", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareGreaterThan(Boolean value) {
+            addCriterion("if_share >", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("if_share >=", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareLessThan(Boolean value) {
+            addCriterion("if_share <", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareLessThanOrEqualTo(Boolean value) {
+            addCriterion("if_share <=", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareIn(List<Boolean> values) {
+            addCriterion("if_share in", values, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareNotIn(List<Boolean> values) {
+            addCriterion("if_share not in", values, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareBetween(Boolean value1, Boolean value2) {
+            addCriterion("if_share between", value1, value2, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("if_share not between", value1, value2, "ifShare");
             return (Criteria) this;
         }
     }

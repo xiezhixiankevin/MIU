@@ -1,8 +1,6 @@
 package com.example.miu.controller;
 
 
-import com.example.miu.mapper.UserMapper;
-
 import com.example.miu.pojo.table.User;
 import com.example.miu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
