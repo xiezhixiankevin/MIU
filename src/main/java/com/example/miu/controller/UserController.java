@@ -35,7 +35,11 @@ public class UserController {
         }
         //然后检查邮箱是否存在
         if (userService.ifUserExisted(code.getEmail())){
-            //存在说明是已有用户
+            //在检查是不是有用户名
+            if (userService.ifEmailExistedButNoUsername(code.getEmail())){
+                //没有用户名
+                return new ReturnObject<>(Global.SUCCESS_REGISTER_EMAIL,null);
+            }
             User user = userService.loginUser(code.getEmail(), code.getCodeValue(),Global.LOGIN_CODE);
             return new ReturnObject<>(Global.SUCCESS,user);
         }else {

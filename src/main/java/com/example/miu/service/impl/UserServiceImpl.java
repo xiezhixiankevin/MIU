@@ -121,6 +121,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean ifEmailExistedButNoUsername(String email) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
+        List<User> userList = userMapper.selectByExample(userExample);
+        if (!userList.isEmpty()){
+            return userList.get(0).getUsername() == null;
+        }
+        return false;
+    }
+
+    @Override
     public int deleteUser(String email) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andEmailEqualTo(email);
