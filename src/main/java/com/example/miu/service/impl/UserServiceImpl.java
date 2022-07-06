@@ -5,6 +5,7 @@ import com.example.miu.pojo.table.User;
 import com.example.miu.pojo.table.UserExample;
 import com.example.miu.service.EmailService;
 import com.example.miu.service.UserService;
+import com.example.miu.utils.Global;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,26 +29,44 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EmailService emailService;
 
+
     @Override
-    public User registerUser(User user) {
-
-        if (ifExistUser(user.getEmail())){
-            return null;
+    public boolean registerUserOfEmail(String email) {
+        if (ifExistUser(email)){
+            return false;
         }
-
-        // 否则注册为新的用户
+        User user = new User();
+        user.setEmail(email);
         userMapper.insertSelective(user);
-
-        /* 成功后告知对方已成功注册 */
-        emailService.sendSimpleMail(user.getEmail() , "Register Notice" , "Register successfully! Welcome to use our products, if you have any " +
-                "comments, please feel free to feedback, we will actively improve, thank you.");
-
-        return user;
+        return true;
     }
 
     @Override
-    public User loginUser(String username, String text,boolean type) {
-        return null;
+    public User registerUserOfUsernameAndPassword(String email, String username, String password) {
+        User userByEmail = getUserByEmail(email);
+        if (userByEmail.getUsername().length()>0)
+            return null;
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
+        userMapper.updateByExampleSelective(user,userExample);
+        return loginUser(email,"",Global.LOGIN_CODE);
+    }
+
+    @Override
+    public User loginUser(String email, String text,boolean type) {
+        User user = getUserByEmail(email);
+        if (type == Global.LOGIN_PASSWORD){
+            if (user.getPassword().equals(text)){
+                return user;
+            }
+            return null;
+        }
+        //通过验证码登录,直接返回user,之前已经校验过验证码
+        return user;
     }
 
     @Override
@@ -74,6 +93,14 @@ public class UserServiceImpl implements UserService {
     public User getUserByUserName(String username) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUsernameEqualTo(username);
+        List<User> userList = userMapper.selectByExample(userExample);
+        return userList.isEmpty()? null:userList.get(0);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
         List<User> userList = userMapper.selectByExample(userExample);
         return userList.isEmpty()? null:userList.get(0);
     }

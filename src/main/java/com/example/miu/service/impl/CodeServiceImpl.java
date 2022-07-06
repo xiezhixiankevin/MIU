@@ -32,7 +32,7 @@ public class CodeServiceImpl implements CodeService {
 
     @Override
     public int sendCode( String email,int type) {
-        if (type == Global.REGISTER){
+        if (type == Global.REGISTER_LOGIN){
             return sendCodeREGISTER(email);
         }else if (type == Global.FIND){
             return sendCodeFIND(email);
@@ -40,20 +40,7 @@ public class CodeServiceImpl implements CodeService {
         return Global.FAIL;
     }
 
-    @Override
-    public int sendCodeForFind(String email) {
-        long codeL = System.nanoTime();
-        //生成6位验证码
-        String codeStr = Long.toString(codeL);
-        codeStr = codeStr.substring(codeStr.length() - 8, codeStr.length() - 2);
-        //存入redis
-        String key_code = email + "_find_code"; //268022625@qq.com_find_code
-        redisTemplate.opsForValue().set(key_code,codeStr,60*5,TimeUnit.SECONDS);//验证码有效时间是5分钟
-        //发送到用户邮箱
-        String content = "你好，欢迎使用miu,验证码是:"+ codeStr +",有效时间5分钟";
-        emailService.sendSimpleMail(email,"miu找回密码验证码",content);
-        return Global.SUCCESS;
-    }
+
 
     @Override
     public int checkCode(Code code, int type) {
@@ -64,27 +51,12 @@ public class CodeServiceImpl implements CodeService {
         return Global.FAIL;
     }
 
-    @Override
-    public int getSendTimes(String email, int type) {
-        String key = email + "_";
-        if (type == Global.REGISTER){
-            key += "register_times";
-        }else {
-            key += "find_times";
-        }
-        Object result = redisTemplate.opsForValue().get(key);
-        if (result == null){
-            return 0;
-        }
-
-        return Integer.parseInt((String) result);
-    }
 
     @Override
     public String getCode(String email,int type) {
         String key = email + "_";
-        if (type == Global.REGISTER){
-            key += "register_code";
+        if (type == Global.REGISTER_LOGIN){
+            key += "code";
         }else {
             key += "find_code";
         }
@@ -97,43 +69,42 @@ public class CodeServiceImpl implements CodeService {
 
     //发送注册验证码
     private int sendCodeREGISTER(String email){
-        int times = getSendTimes(email,Global.REGISTER);
-        if (times <= 5){ //每个邮箱每1小时只能发送5次
-            long codeL = System.nanoTime();
-            //先生成6位验证码
-            String codeStr = Long.toString(codeL);
-            codeStr = codeStr.substring(codeStr.length() - 8, codeStr.length() - 2);
-            //存入redis
-            String key_code = email + "_register_code";
-            String key_times = email + "_register_times";
-            redisTemplate.opsForValue().set(key_code,codeStr,60*5,TimeUnit.SECONDS);//验证码有效时间是5分钟
-            redisTemplate.opsForValue().set(key_times,String.valueOf(times+1),1, TimeUnit.HOURS);//更新最近验证码发送时间
-            //发送到用户邮箱
-            String content = "你好，欢迎使用miu,验证码是:"+ codeStr +",有效时间5分钟";
-            emailService.sendSimpleMail(email,"miu注册验证码",content);
-            return Global.SUCCESS;
-        }
-        return Global.FAIL;
+        //先判断之前发的验证码有没有失效
+        if (getCode(email,Global.REGISTER_LOGIN).length()>0)
+            return Global.FAIL;
+        long codeL = System.nanoTime();
+        //先生成6位验证码
+        String codeStr = Long.toString(codeL);
+        codeStr = codeStr.substring(codeStr.length() - 8, codeStr.length() - 2);
+        //存入redis
+        String key_code = email + "_code";
+        redisTemplate.opsForValue().set(key_code,codeStr,60*5,TimeUnit.SECONDS);//验证码有效时间是5分钟
+
+        //发送到用户邮箱
+        String content = "你好，欢迎使用miu,验证码是:"+ codeStr +",有效时间5分钟";
+        emailService.sendSimpleMail(email,"miu验证码",content);
+        return Global.SUCCESS;
+
     }
 
     //发送找回密码验证码
     private int sendCodeFIND(String email){
-        int times = getSendTimes(email,Global.FIND);
-        if (times <= 5){ //每个用户每1小时只能发送5次
-            long codeL = System.nanoTime();
-            //先生成6位验证码
-            String codeStr = Long.toString(codeL);
-            codeStr = codeStr.substring(codeStr.length() - 8, codeStr.length() - 2);
-            //存入redis
-            String key_code = email + "_find_code";
-            String key_times = email + "_find_times";
-            redisTemplate.opsForValue().set(key_code,codeStr,60*5,TimeUnit.SECONDS);//验证码有效时间是5分钟
-            redisTemplate.opsForValue().set(key_times,String.valueOf(times+1),1, TimeUnit.HOURS);//更新最近验证码发送时间
-            //发送到用户邮箱
-            String content = "你好，欢迎使用miu,验证码是:"+ codeStr +",有效时间5分钟";
-            emailService.sendSimpleMail(email,"miu找回密码验证码",content);
-            return Global.SUCCESS;
-        }
-        return Global.FAIL;
+        //先判断之前发的验证码有没有失效
+        if (getCode(email,Global.FIND).length()>0)
+            return Global.FAIL;
+
+        long codeL = System.nanoTime();
+        //先生成6位验证码
+        String codeStr = Long.toString(codeL);
+        codeStr = codeStr.substring(codeStr.length() - 8, codeStr.length() - 2);
+        //存入redis
+        String key_code = email + "_find_code";
+        redisTemplate.opsForValue().set(key_code,codeStr,60*5,TimeUnit.SECONDS);//验证码有效时间是5分钟
+
+        //发送到用户邮箱
+        String content = "你好，欢迎使用miu,验证码是:"+ codeStr +",有效时间5分钟";
+        emailService.sendSimpleMail(email,"miu找回密码验证码",content);
+        return Global.SUCCESS;
+
     }
 }

@@ -15,22 +15,20 @@ import java.util.List;
  */
 public interface UserService {
 
+    //注册邮箱
+    boolean registerUserOfEmail(String email);
 
-    /*注册部分*/
-
-    /*
-     *注册业务，传入一个对象用于注册,注册成功返回相应对象(带id),否则返回null
-     * xzx
-     * */
-    //注册成为用户
-    User registerUser(User user);
+    //注册邮箱
+    //此方法需要把用户信息保存在redis里
+    User registerUserOfUsernameAndPassword(String email,String username,String password);
 
     /*登录部分*/
 
     /*
      * 同样,登陆成功返回用户实体(包含从数据库中查到的所有字段),否则返回null
-     * wkx
+     * xzx
      * type:true 密码登录  false:验证码登录
+     * 此方法需要把用户信息保存在redis里
      * */
     User loginUser(String email, String text,boolean type);
 
@@ -43,6 +41,7 @@ public interface UserService {
     List<User> listUser(); //获取数据库中的所有用户 xzx
     List<User> listUserSelective(User user); //xzx
     User getUserByUserName(String username); //xzx
+    User getUserByEmail(String email); //xzx
 
 
     boolean ifExistUser(String email); //wkx
