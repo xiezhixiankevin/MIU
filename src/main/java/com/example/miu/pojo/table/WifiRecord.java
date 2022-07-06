@@ -3,15 +3,15 @@ package com.example.miu.pojo.table;
 public class WifiRecord {
     private Integer id;
 
-    private Integer x;
+    private Integer areaId;
 
-    private Integer y;
+    private Float x;
 
-    private String strength;
+    private Float y;
 
     private String aps;
 
-    private String from;
+    private String strength;
 
     public Integer getId() {
         return id;
@@ -21,28 +21,28 @@ public class WifiRecord {
         this.id = id;
     }
 
-    public Integer getX() {
+    public Integer getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
+    }
+
+    public Float getX() {
         return x;
     }
 
-    public void setX(Integer x) {
+    public void setX(Float x) {
         this.x = x;
     }
 
-    public Integer getY() {
+    public Float getY() {
         return y;
     }
 
-    public void setY(Integer y) {
+    public void setY(Float y) {
         this.y = y;
-    }
-
-    public String getStrength() {
-        return strength;
-    }
-
-    public void setStrength(String strength) {
-        this.strength = strength == null ? null : strength.trim();
     }
 
     public String getAps() {
@@ -53,11 +53,11 @@ public class WifiRecord {
         this.aps = aps == null ? null : aps.trim();
     }
 
-    public String getFrom() {
-        return from;
+    public String getStrength() {
+        return strength;
     }
 
-    public void setFrom(String from) {
-        this.from = from == null ? null : from.trim();
+    public void setStrength(String strength) {
+        this.strength = strength == null ? null : strength.trim();
     }
 }
