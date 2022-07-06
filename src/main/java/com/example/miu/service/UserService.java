@@ -45,9 +45,9 @@ public interface UserService {
     User getUserByUserName(String username); //xzx
 
 
-    boolean ifExistUser(String email); //wkx
+    boolean ifUserExisted(String email); //wkx
     int deleteUser(String email); //wkx
-    int updateUser(int userId, User user); //wkx
+    int updateUser(User user); //wkx
 
 
 
