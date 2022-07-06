@@ -3,7 +3,6 @@ package com.example.miu.service.impl;
 import com.example.miu.mapper.ApMapper;
 import com.example.miu.pojo.table.Ap;
 import com.example.miu.pojo.table.ApExample;
-import com.example.miu.pojo.table.Area;
 import com.example.miu.service.ApService;
 import com.example.miu.utils.Global;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class ApServiceImpl implements ApService {
     }
 
     @Override
-    public List<Area> listAp() {
+    public List<Ap> listAp() {
         return null;
     }
 

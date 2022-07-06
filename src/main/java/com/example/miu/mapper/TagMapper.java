@@ -4,7 +4,9 @@ import com.example.miu.pojo.table.Tag;
 import com.example.miu.pojo.table.TagExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TagMapper {
     int countByExample(TagExample example);
 

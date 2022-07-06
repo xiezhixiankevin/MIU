@@ -9,6 +9,7 @@
     <result column="photo_path" property="photoPath" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="TINYINT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="if_share" property="ifShare" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, email, photo_path, gender, description
+    id, username, password, email, photo_path, gender, description, if_share
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.miu.pojo.table.UserExample" >
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="com.example.miu.pojo.table.User" >
     insert into user (id, username, password, 
       email, photo_path, gender, 
-      description)
+      description, if_share)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{photoPath,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
-      #{description,jdbcType=VARCHAR})
+      #{description,jdbcType=VARCHAR}, #{ifShare,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.example.miu.pojo.table.User" >
     insert into user
@@ -133,6 +134,9 @@
       <if test="description != null" >
         description,
       </if>
+      <if test="ifShare != null" >
+        if_share,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +159,9 @@
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ifShare != null" >
+        #{ifShare,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
+      <if test="record.ifShare != null" >
+        if_share = #{record.ifShare,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       email = #{record.email,jdbcType=VARCHAR},
       photo_path = #{record.photoPath,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=TINYINT},
-      description = #{record.description,jdbcType=VARCHAR}
+      description = #{record.description,jdbcType=VARCHAR},
+      if_share = #{record.ifShare,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="ifShare != null" >
+        if_share = #{ifShare,jdbcType=TINYINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +251,8 @@
       email = #{email,jdbcType=VARCHAR},
       photo_path = #{photoPath,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=TINYINT},
-      description = #{description,jdbcType=VARCHAR}
+      description = #{description,jdbcType=VARCHAR},
+      if_share = #{ifShare,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

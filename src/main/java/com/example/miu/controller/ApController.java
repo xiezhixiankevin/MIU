@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @see com.example.miu.controller
  */
 @RequestMapping("/ap")
+@ResponseBody
 @Controller
 public class ApController {
 
@@ -28,7 +29,6 @@ public class ApController {
     private ApService apService;
 
     @PostMapping("/addAp")
-    @ResponseBody
     public ReturnObject<String> addAp(Ap ap){
         if (apService.addAp(ap) == Global.SUCCESS){
             return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));
@@ -37,7 +37,6 @@ public class ApController {
     }
 
     @GetMapping("/getAp")
-    @ResponseBody
     public ReturnObject<Ap> getAp(String bssid,String ssid){
         Ap ap = null;
         if ((ap = apService.getApBybssidByssid(bssid,ssid)) != null){

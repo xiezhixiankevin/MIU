@@ -1,5 +1,7 @@
 package com.example.miu.service;
 
+import com.example.miu.pojo.table.User;
+
 import java.util.List;
 
 /**
@@ -29,7 +31,7 @@ public interface UserService {
      * 同样,登陆成功返回用户实体(包含从数据库中查到的所有字段),否则返回null
      * wkx
      * */
-    User loginUser(String username,String password);
+    User loginUser(String username, String password);
 
     /*找回密码部分
      *

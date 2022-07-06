@@ -1,7 +1,6 @@
 package com.example.miu.service;
 
 import com.example.miu.pojo.table.Ap;
-import com.example.miu.pojo.table.Area;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public interface ApService {
 
     int deleteAp(Ap ap);
 
-    List<Area> listAp();
+    List<Ap> listAp();
 
     boolean ifExistAp(Ap ap);
 

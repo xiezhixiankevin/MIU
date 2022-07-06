@@ -15,6 +15,8 @@ public class User {
 
     private String description;
 
+    private Byte ifShare;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Byte getIfShare() {
+        return ifShare;
+    }
+
+    public void setIfShare(Byte ifShare) {
+        this.ifShare = ifShare;
     }
 }

@@ -573,6 +573,66 @@ public class UserExample {
             addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
+
+        public Criteria andIfShareIsNull() {
+            addCriterion("if_share is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareIsNotNull() {
+            addCriterion("if_share is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareEqualTo(Byte value) {
+            addCriterion("if_share =", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareNotEqualTo(Byte value) {
+            addCriterion("if_share <>", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareGreaterThan(Byte value) {
+            addCriterion("if_share >", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareGreaterThanOrEqualTo(Byte value) {
+            addCriterion("if_share >=", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareLessThan(Byte value) {
+            addCriterion("if_share <", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareLessThanOrEqualTo(Byte value) {
+            addCriterion("if_share <=", value, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareIn(List<Byte> values) {
+            addCriterion("if_share in", values, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareNotIn(List<Byte> values) {
+            addCriterion("if_share not in", values, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareBetween(Byte value1, Byte value2) {
+            addCriterion("if_share between", value1, value2, "ifShare");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfShareNotBetween(Byte value1, Byte value2) {
+            addCriterion("if_share not between", value1, value2, "ifShare");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

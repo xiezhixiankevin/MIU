@@ -1,7 +1,5 @@
 package com.example.miu.service;
 
-import com.example.miu.pojo.table.Ap;
-import com.example.miu.pojo.table.Area;
 import com.example.miu.pojo.table.WifiRecord;
 
 import java.util.List;

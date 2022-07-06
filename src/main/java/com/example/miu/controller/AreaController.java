@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @see com.example.miu.controller
  */
 @RequestMapping("/area")
+@ResponseBody
 @Controller
 public class AreaController {
 
@@ -27,7 +28,6 @@ public class AreaController {
     private AreaService areaService;
 
     @PostMapping("/addArea")
-    @ResponseBody
     public ReturnObject<String> addArea(Area area){
         if (areaService.addArea(area) == Global.SUCCESS){
             return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));

@@ -1,5 +1,7 @@
 package com.example.miu.pojo.table;
 
+import java.util.Date;
+
 public class Tag {
     private Integer id;
 
@@ -14,6 +16,10 @@ public class Tag {
     private Integer areaId;
 
     private Integer userId;
+
+    private String tagName;
+
+    private Date addTime;
 
     public Integer getId() {
         return id;
@@ -69,5 +75,21 @@ public class Tag {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName == null ? null : tagName.trim();
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
     }
 }

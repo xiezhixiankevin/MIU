@@ -1,6 +1,7 @@
 package com.example.miu.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <Description> UserController
@@ -13,5 +14,6 @@ import org.springframework.stereotype.Controller;
  */
 
 @Controller
+@ResponseBody
 public class UserController {
 }
