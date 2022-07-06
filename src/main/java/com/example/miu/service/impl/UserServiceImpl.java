@@ -1,14 +1,21 @@
 package com.example.miu.service.impl;
 
+import com.example.miu.constant.enums.RespEnum;
+import com.example.miu.constant.exception.MIUException;
+import com.example.miu.mapper.UserMapper;
 import com.example.miu.pojo.table.User;
 
 import com.example.miu.mapper.UserMapper;
 import com.example.miu.pojo.table.UserExample;
+
 import com.example.miu.service.EmailService;
+
 import com.example.miu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,6 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
     @Autowired
     private EmailService emailService;
 
@@ -80,16 +88,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean ifExistUser(String username) {return false;
+    public boolean ifUserExisted(String email) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
+        return !userMapper.selectByExample(userExample).isEmpty();
     }
 
     @Override
     public int deleteUser(String email) {
-        return 0;
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
+        return userMapper.deleteByExample(userExample);
     }
 
     @Override
-    public int updateUser(int userId, User user) {
-        return 0;
+    public int updateUser(User user) {
+        if(user == null || user.getId() == null){
+            throw new MIUException(RespEnum.USER_ID_NULL);
+        }
+        return userMapper.updateByPrimaryKey(user);
     }
 }
