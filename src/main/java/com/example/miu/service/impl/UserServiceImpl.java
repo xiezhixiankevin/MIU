@@ -4,6 +4,7 @@ import com.example.miu.pojo.table.User;
 
 import com.example.miu.mapper.UserMapper;
 import com.example.miu.pojo.table.UserExample;
+import com.example.miu.service.EmailService;
 import com.example.miu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,28 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private EmailService emailService;
 
     @Override
     public User registerUser(User user) {
-        return null;
+
+        if (ifExistUser(user.getEmail())){
+            return null;
+        }
+
+        // 否则注册为新的用户
+        userMapper.insertSelective(user);
+
+        /* 成功后告知对方已成功注册 */
+        emailService.sendSimpleMail(user.getEmail() , "Register Notice" , "Register successfully! Welcome to use our products, if you have any " +
+                "comments, please feel free to feedback, we will actively improve, thank you.");
+
+        return user;
     }
 
     @Override
-    public User loginUser(String username, String password) {
+    public User loginUser(String username, String text,boolean type) {
         return null;
     }
 
@@ -53,21 +68,24 @@ public class UserServiceImpl implements UserService {
         if (user.getGender() != null){
             criteria.andGenderEqualTo(user.getGender());
         }
-        return null;
+        return userMapper.selectByExample(userExample);
     }
 
     @Override
     public User getUserByUserName(String username) {
-        return null;
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUsernameEqualTo(username);
+        List<User> userList = userMapper.selectByExample(userExample);
+        return userList.isEmpty()? null:userList.get(0);
     }
 
     @Override
-    public boolean ifExistUser(String username) {
+    public boolean ifExistUser(String email) {
         return false;
     }
 
     @Override
-    public int deleteUser(String username) {
+    public int deleteUser(String email) {
         return 0;
     }
 
