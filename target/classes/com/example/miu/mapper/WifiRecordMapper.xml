@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.miu.mapper.WifiRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.example.miu.pojo.table.WifiRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="x" property="x" jdbcType="REAL" />
+    <result column="y" property="y" jdbcType="REAL" />
+    <result column="aps" property="aps" jdbcType="VARCHAR" />
+    <result column="strength" property="strength" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, area_id, x, y, aps, strength
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.miu.pojo.table.WifiRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wifi_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wifi_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wifi_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.miu.pojo.table.WifiRecordExample" >
+    delete from wifi_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.miu.pojo.table.WifiRecord" >
+    insert into wifi_record (id, area_id, x, y, 
+      aps, strength)
+    values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{x,jdbcType=REAL}, #{y,jdbcType=REAL}, 
+      #{aps,jdbcType=VARCHAR}, #{strength,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.WifiRecord" >
+    insert into wifi_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="aps != null" >
+        aps,
+      </if>
+      <if test="strength != null" >
+        strength,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=REAL},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=REAL},
+      </if>
+      <if test="aps != null" >
+        #{aps,jdbcType=VARCHAR},
+      </if>
+      <if test="strength != null" >
+        #{strength,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.miu.pojo.table.WifiRecordExample" resultType="java.lang.Integer" >
+    select count(*) from wifi_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wifi_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.x != null" >
+        x = #{record.x,jdbcType=REAL},
+      </if>
+      <if test="record.y != null" >
+        y = #{record.y,jdbcType=REAL},
+      </if>
+      <if test="record.aps != null" >
+        aps = #{record.aps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strength != null" >
+        strength = #{record.strength,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wifi_record
+    set id = #{record.id,jdbcType=INTEGER},
+      area_id = #{record.areaId,jdbcType=INTEGER},
+      x = #{record.x,jdbcType=REAL},
+      y = #{record.y,jdbcType=REAL},
+      aps = #{record.aps,jdbcType=VARCHAR},
+      strength = #{record.strength,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.miu.pojo.table.WifiRecord" >
+    update wifi_record
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=REAL},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=REAL},
+      </if>
+      <if test="aps != null" >
+        aps = #{aps,jdbcType=VARCHAR},
+      </if>
+      <if test="strength != null" >
+        strength = #{strength,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.miu.pojo.table.WifiRecord" >
+    update wifi_record
+    set area_id = #{areaId,jdbcType=INTEGER},
+      x = #{x,jdbcType=REAL},
+      y = #{y,jdbcType=REAL},
+      aps = #{aps,jdbcType=VARCHAR},
+      strength = #{strength,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

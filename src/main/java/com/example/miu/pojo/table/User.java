@@ -1,6 +1,11 @@
 package com.example.miu.pojo.table;
 
-public class User {
+import lombok.ToString;
+
+import java.io.Serializable;
+
+@ToString
+public class User implements Serializable {
     private Integer id;
 
     private String username;
