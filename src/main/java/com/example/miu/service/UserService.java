@@ -30,8 +30,9 @@ public interface UserService {
     /*
      * 同样,登陆成功返回用户实体(包含从数据库中查到的所有字段),否则返回null
      * wkx
+     * type:true 密码登录  false:验证码登录
      * */
-    User loginUser(String username, String password);
+    User loginUser(String email, String text,boolean type);
 
     /*找回密码部分
      *
@@ -44,8 +45,8 @@ public interface UserService {
     User getUserByUserName(String username); //xzx
 
 
-    boolean ifExistUser(String username); //wkx
-    int deleteUser(String username); //wkx
+    boolean ifExistUser(String email); //wkx
+    int deleteUser(String email); //wkx
     int updateUser(int userId, User user); //wkx
 
 
