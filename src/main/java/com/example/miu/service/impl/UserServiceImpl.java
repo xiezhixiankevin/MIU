@@ -80,8 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean ifExistUser(String email) {
-        return false;
+    public boolean ifExistUser(String username) {return false;
     }
 
     @Override
