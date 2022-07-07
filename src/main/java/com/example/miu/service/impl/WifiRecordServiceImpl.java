@@ -2,12 +2,14 @@ package com.example.miu.service.impl;
 
 import com.example.miu.mapper.WifiRecordMapper;
 import com.example.miu.pojo.table.WifiRecord;
+import com.example.miu.pojo.table.WifiRecordExample;
 import com.example.miu.service.WifiRecordService;
 import com.example.miu.utils.Global;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <Description> WifiRecordService
@@ -37,7 +39,15 @@ public class WifiRecordServiceImpl implements WifiRecordService {
     }
 
     @Override
-    public List<WifiRecord> listWifiRecord() {
+    public List<WifiRecord> listWifiRecordByAreaId(Integer areaId) {
+        WifiRecordExample wifiRecordExample = new WifiRecordExample();
+        wifiRecordExample.createCriteria().andAreaIdEqualTo(areaId);
+        return wifiRecordMapper.selectByExample(wifiRecordExample);
+    }
+
+
+    @Override
+    public Map<String, Float> calculateLocation(WifiRecord userLocation, List<WifiRecord> areaWifiRecords) {
         return null;
     }
 }

@@ -1,6 +1,8 @@
 package com.example.miu.pojo.table;
 
-public class Ap {
+import java.io.Serializable;
+
+public class Ap implements Serializable {
     private Integer id;
 
     private String bssid;

@@ -6,9 +6,11 @@ import com.example.miu.utils.Global;
 import com.example.miu.utils.ReturnObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.*;
 
 /**
  * <Description> AreaController
@@ -33,6 +35,11 @@ public class AreaController {
             return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));
         }
         return new ReturnObject<>(Global.FAIL,String.valueOf(Global.FAIL));
+    }
+
+    @GetMapping("/listArea")
+    public ReturnObject<List<Area>> listArea(Area area){
+        return new ReturnObject<>(Global.SUCCESS, areaService.listArea());
     }
 
 }

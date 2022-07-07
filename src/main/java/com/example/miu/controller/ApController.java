@@ -1,5 +1,7 @@
 package com.example.miu.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.example.miu.pojo.table.Ap;
 import com.example.miu.service.ApService;
 import com.example.miu.utils.Global;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.*;
 
 /**
  * <Description> ApController
@@ -29,11 +33,13 @@ public class ApController {
     private ApService apService;
 
     @PostMapping("/addAp")
-    public ReturnObject<String> addAp(Ap ap){
-        if (apService.addAp(ap) == Global.SUCCESS){
-            return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));
+    public ReturnObject<String> addAp(String aps,Integer areaId){
+        ArrayList<Ap> apList  = JSON.parseObject(aps, new TypeReference<ArrayList<Ap>>(){});
+        for (Ap ap : apList){
+            ap.setAreaId(areaId);
+            apService.addAp(ap);
         }
-        return new ReturnObject<>(Global.FAIL,String.valueOf(Global.FAIL));
+        return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));
     }
 
     @GetMapping("/getAp")
@@ -43,6 +49,12 @@ public class ApController {
             return new ReturnObject<>(Global.SUCCESS,ap);
         }
         return new ReturnObject<>(Global.FAIL,ap);
+    }
+
+    @GetMapping("/listApByAreaId")
+    public ReturnObject<List<Ap>> listApByAreaId(Integer areaId){
+        List<Ap> apList = apService.listApByAreaId(areaId);
+        return new ReturnObject<>(Global.SUCCESS,apList);
     }
 
 }

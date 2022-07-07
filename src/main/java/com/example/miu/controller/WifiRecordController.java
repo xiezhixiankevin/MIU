@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 /**
  * <Description> WifiRecordController
  *
@@ -34,6 +36,28 @@ public class WifiRecordController {
             return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));
         }
         return new ReturnObject<>(Global.FAIL,String.valueOf(Global.FAIL));
+    }
+
+    @PostMapping("/getLocation")
+    @ResponseBody
+    public ReturnObject<Map<String,Float>> getLocation(WifiRecord wifiRecord){
+        if (checkWifiRecord(wifiRecord)){
+            Map<String, Float> map = wifiRecordService.calculateLocation(wifiRecord, wifiRecordService.listWifiRecordByAreaId(wifiRecord.getAreaId()));
+            return new ReturnObject<>(Global.SUCCESS,map);
+        }
+        return new ReturnObject<>(Global.FAIL,null);
+    }
+
+    private boolean checkWifiRecord(WifiRecord wifiRecord){
+        if (wifiRecord == null)
+            return false;
+        if (wifiRecord.getAreaId() == null)
+            return false;
+        if (wifiRecord.getAps() == null)
+            return false;
+        if (wifiRecord.getStrength() == null)
+            return false;
+        return true;
     }
 
 }

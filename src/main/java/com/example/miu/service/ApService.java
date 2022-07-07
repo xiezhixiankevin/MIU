@@ -19,7 +19,7 @@ public interface ApService {
 
     int deleteAp(Ap ap);
 
-    List<Ap> listAp();
+    List<Ap> listApByAreaId(Integer areaId);
 
     boolean ifExistAp(Ap ap);
 

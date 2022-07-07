@@ -41,14 +41,17 @@ public class ApServiceImpl implements ApService {
     }
 
     @Override
-    public List<Ap> listAp() {
-        return null;
+    public List<Ap> listApByAreaId(Integer areaId) {
+        ApExample apExample = new ApExample();
+        apExample.createCriteria().andAreaIdEqualTo(areaId);
+        return apMapper.selectByExample(apExample);
     }
+
 
     @Override
     public boolean ifExistAp(Ap ap) {
         ApExample apExample = new ApExample();
-        apExample.createCriteria().andBssidEqualTo(ap.getBssid()).andSsidEqualTo(ap.getSsid());
+        apExample.createCriteria().andBssidEqualTo(ap.getBssid()).andSsidEqualTo(ap.getSsid()).andAreaIdEqualTo(ap.getAreaId());
         return !apMapper.selectByExample(apExample).isEmpty();
     }
 
