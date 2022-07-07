@@ -40,10 +40,13 @@ public class WifiRecordController {
 
     @PostMapping("/getLocation")
     @ResponseBody
-    public ReturnObject<Map<String,Float>> getLocation(WifiRecord wifiRecord){
+    public ReturnObject<WifiRecord> getLocation(WifiRecord wifiRecord){
         if (checkWifiRecord(wifiRecord)){
-            Map<String, Float> map = wifiRecordService.calculateLocation(wifiRecord, wifiRecordService.listWifiRecordByAreaId(wifiRecord.getAreaId()));
-            return new ReturnObject<>(Global.SUCCESS,map);
+            WifiRecord result = wifiRecordService.calculateLocation(
+                    wifiRecordService.wifiRecord2Extend(wifiRecord),
+                    wifiRecordService.wifiRecordList2Extend(wifiRecordService.listWifiRecordByAreaId(wifiRecord.getAreaId()))
+            );
+            return new ReturnObject<>(Global.SUCCESS,result);
         }
         return new ReturnObject<>(Global.FAIL,null);
     }

@@ -1,6 +1,8 @@
 package com.example.miu.pojo.table;
 
-public class WifiRecord {
+import java.io.Serializable;
+
+public class WifiRecord implements Serializable {
     private Integer id;
 
     private Integer areaId;
