@@ -6,10 +6,9 @@ import com.example.miu.utils.Global;
 import com.example.miu.utils.ReturnObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.*;
 
 /**
@@ -30,8 +29,8 @@ public class AreaController {
     private AreaService areaService;
 
     @PostMapping("/addArea")
-    public ReturnObject<String> addArea(Area area){
-        if (areaService.addArea(area) == Global.SUCCESS){
+    public ReturnObject<String> addArea(Area area,@RequestParam("file") MultipartFile multipartFile){
+        if (areaService.addArea(area,multipartFile) == Global.SUCCESS){
             return new ReturnObject<>(Global.SUCCESS,String.valueOf(Global.SUCCESS));
         }
         return new ReturnObject<>(Global.FAIL,String.valueOf(Global.FAIL));

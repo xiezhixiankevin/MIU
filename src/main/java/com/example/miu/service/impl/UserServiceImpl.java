@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
@@ -47,6 +48,13 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setEmail(email);
         userMapper.insertSelective(user);
+
+        String savePath = "/home/project/miu/images/user/" + user.getId();
+        File folder = new File(savePath);
+        //不存在则创建文件夹
+        if (!folder.exists()){
+            folder.mkdir();
+        }
         return true;
     }
 
@@ -62,6 +70,8 @@ public class UserServiceImpl implements UserService {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andEmailEqualTo(email);
         userMapper.updateByExampleSelective(user,userExample);
+
+
         return loginUser(email,"",Global.LOGIN_CODE);
     }
 
@@ -143,6 +153,6 @@ public class UserServiceImpl implements UserService {
         if(user == null || user.getId() == null){
             throw new MIUException(RespEnum.USER_ID_NULL);
         }
-        return userMapper.updateByPrimaryKey(user);
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 }

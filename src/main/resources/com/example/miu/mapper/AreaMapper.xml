@@ -100,7 +100,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.miu.pojo.table.Area" >
+  <insert id="insert" parameterType="com.example.miu.pojo.table.Area" keyProperty="id" useGeneratedKeys="true" >
     insert into area (id, name, long_description, 
       photo_path, short_description, image_path
       )
@@ -108,7 +108,7 @@
       #{photoPath,jdbcType=VARCHAR}, #{shortDescription,jdbcType=VARCHAR}, #{imagePath,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.Area" >
+  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.Area" keyProperty="id" useGeneratedKeys="true" >
     insert into area
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

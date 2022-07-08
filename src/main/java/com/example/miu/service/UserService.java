@@ -47,7 +47,7 @@ public interface UserService {
     boolean ifUserExisted(String email); //wkx
     boolean ifEmailExistedButNoUsername(String email); //wkx
     int deleteUser(String email); //wkx
-    int updateUser(User user); //wkx
+    int updateUser(User user); //wkx 只更新数据库
 
 
 

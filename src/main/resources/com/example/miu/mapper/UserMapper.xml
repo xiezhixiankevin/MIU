@@ -102,7 +102,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.miu.pojo.table.User" >
+  <insert id="insert" parameterType="com.example.miu.pojo.table.User" useGeneratedKeys="true" keyProperty="id" >
     insert into user (id, username, password, 
       email, photo_path, gender, 
       description, if_share)
@@ -110,7 +110,7 @@
       #{email,jdbcType=VARCHAR}, #{photoPath,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
       #{description,jdbcType=VARCHAR}, #{ifShare,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.User" >
+  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.User" useGeneratedKeys="true" keyProperty="id" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

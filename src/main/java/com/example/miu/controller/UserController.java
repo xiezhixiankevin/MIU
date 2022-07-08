@@ -5,15 +5,16 @@ import com.example.miu.pojo.logic.Code;
 import com.example.miu.pojo.table.User;
 import com.example.miu.service.CodeService;
 import com.example.miu.service.UserService;
+import com.example.miu.utils.FileUtil;
 import com.example.miu.utils.Global;
 import com.example.miu.utils.ReturnObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RequestMapping("/user")
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     private CodeService codeService;
+
+
 
     @PostMapping("/loginByCode")
     public ReturnObject<User> loginByCode(Code code){
@@ -68,6 +71,31 @@ public class UserController {
             return new ReturnObject<>(Global.FAIL,null);
         }
         return new ReturnObject<>(Global.SUCCESS,user);
+    }
+
+    @PostMapping("/updateInfo")
+    public ReturnObject<String> updateInfo(User user,
+                                        @RequestParam("image")MultipartFile image){
+        final String basePath = "/home/project/miu/images/user/" + user.getId();
+        if (user.getId() == null){
+            return new ReturnObject<>(Global.FAIL,"-1");
+        }
+        if (image != null){
+            //先删除文件夹下原有文件
+            FileUtil.deleteAllFile(basePath);
+            //更新文件
+            String newPath = FileUtil.updateFile(basePath,image);
+
+            if (newPath == null){
+                //更新失败
+                return new ReturnObject<>(Global.FAIL,"-1");
+            }
+            user.setPhotoPath(newPath);
+        }
+
+        userService.updateUser(user);
+
+        return new ReturnObject<>(Global.SUCCESS,"200");
     }
 
 }

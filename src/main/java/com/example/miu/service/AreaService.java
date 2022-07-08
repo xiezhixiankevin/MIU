@@ -1,6 +1,7 @@
 package com.example.miu.service;
 
 import com.example.miu.pojo.table.Area;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -16,7 +17,7 @@ import java.util.*;
 public interface AreaService {
 
 
-    int addArea(Area area);
+    int addArea(Area area, MultipartFile multipartFile);
 
     int deleteArea(Area area);
 
