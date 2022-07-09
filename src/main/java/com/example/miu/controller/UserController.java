@@ -75,7 +75,7 @@ public class UserController {
 
     @PostMapping("/updateInfo")
     public ReturnObject<String> updateInfo(User user,
-                                        @RequestParam("image")MultipartFile image){
+                                        @RequestParam(value = "image",required = false)MultipartFile image){
         final String basePath = "/home/project/miu/images/user/" + user.getId();
         if (user.getId() == null){
             return new ReturnObject<>(Global.FAIL,"-1");

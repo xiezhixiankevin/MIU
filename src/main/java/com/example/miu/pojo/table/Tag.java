@@ -19,7 +19,7 @@ public class Tag {
 
     private String tagName;
 
-    private Date addTime;
+    private Date addTime = new Date();
 
     public Integer getId() {
         return id;

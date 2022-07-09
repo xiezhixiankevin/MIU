@@ -103,7 +103,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.miu.pojo.table.Tag" >
+  <insert id="insert" parameterType="com.example.miu.pojo.table.Tag" keyProperty="id" useGeneratedKeys="true" >
     insert into tag (id, tag_description, picture_path, 
       x, y, area_id, user_id, 
       tag_name, add_time)
@@ -111,7 +111,7 @@
       #{x,jdbcType=REAL}, #{y,jdbcType=REAL}, #{areaId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
       #{tagName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.Tag" >
+  <insert id="insertSelective" parameterType="com.example.miu.pojo.table.Tag" useGeneratedKeys="true" keyProperty="id" >
     insert into tag
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

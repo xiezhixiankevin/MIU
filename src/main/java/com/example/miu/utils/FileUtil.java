@@ -15,6 +15,13 @@ import java.io.*;
  */
 public class FileUtil {
 
+    public static void createFolder(String path){
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+    }
+
     public static boolean deleteAllFile(String path){
         boolean flag = false;
         File file = new File(path);
