@@ -19,12 +19,11 @@ public class WifiRecordExtend extends WifiRecord {
     private List<Integer> strengthList;
 
     public WifiRecordExtend(WifiRecord wifiRecord) {
+        super(wifiRecord.getAreaId(),wifiRecord.getX(),wifiRecord.getY());
         setId(wifiRecord.getId());
-        setAreaId(wifiRecord.getAreaId());
         setAps(wifiRecord.getAps());
         setStrength(wifiRecord.getStrength());
-        setX(wifiRecord.getX());
-        setY(wifiRecord.getY());
+
     }
 
     public List<Integer> getStrengthList() {

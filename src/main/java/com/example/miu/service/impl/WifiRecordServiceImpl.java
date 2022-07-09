@@ -7,6 +7,7 @@ import com.example.miu.pojo.table.extend.WifiRecordExtend;
 import com.example.miu.service.WifiRecordService;
 import com.example.miu.utils.ArrayUtil;
 import com.example.miu.utils.Global;
+import com.example.miu.utils.location.KNN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,7 +73,8 @@ public class WifiRecordServiceImpl implements WifiRecordService {
 
     @Override
     public WifiRecord calculateLocation(WifiRecordExtend userLocation, List<WifiRecordExtend> areaWifiRecords) {
-        return null;
+        KNN knn = new KNN();
+        return knn.calculateLocation(userLocation,areaWifiRecords);
     }
 
 

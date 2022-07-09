@@ -15,6 +15,12 @@ public class WifiRecord implements Serializable {
 
     private String strength;
 
+    public WifiRecord(Integer areaId, Float x, Float y) {
+        this.areaId = areaId;
+        this.x = x;
+        this.y = y;
+    }
+
     public Integer getId() {
         return id;
     }
