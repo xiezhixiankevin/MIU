@@ -3,6 +3,7 @@ package com.example.miu.controller;
 
 import com.example.miu.pojo.logic.Code;
 import com.example.miu.pojo.table.User;
+import com.example.miu.pojo.table.UserExample;
 import com.example.miu.service.CodeService;
 import com.example.miu.service.UserService;
 import com.example.miu.utils.FileUtil;
@@ -50,6 +51,17 @@ public class UserController {
             userService.registerUserOfEmail(code.getEmail());
             return new ReturnObject<>(Global.SUCCESS_REGISTER_EMAIL,null);
         }
+    }
+
+    @PostMapping("/updatePassword")
+    public ReturnObject<String> updatePassword(Code code,String newPassword){
+        //首先检查验证码
+        if (codeService.checkCode(code, Global.FIND) != Global.SUCCESS){
+            return new ReturnObject<>(Global.CODE_ERROR,"201");
+        }
+        //验证码正确修改用户密码
+        userService.updatePassword(code.getEmail(),newPassword);
+        return new ReturnObject<>(Global.SUCCESS,"200");
     }
 
     @PostMapping("/loginByPassword")

@@ -1,6 +1,7 @@
 package com.example.miu.service;
 
 import com.example.miu.pojo.table.Tag;
+import java.util.*;
 
 /**
  * <Description> TagService
@@ -18,5 +19,8 @@ public interface TagService {
 
     //更新标记点
     void updateTag(Tag tag);
+
+    //
+    List<Tag> listTagByAreaId(Integer id);
 
 }

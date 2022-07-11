@@ -89,9 +89,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String retrievePassword(String username) {
-        return null;
+    public void updatePassword(String email, String newPassword) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andEmailEqualTo(email);
+        User user = new User();
+        user.setPassword(newPassword);
+        userMapper.updateByExampleSelective(user,userExample);
     }
+
 
     @Override
     public List<User> listUser() {

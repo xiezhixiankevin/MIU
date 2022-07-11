@@ -32,10 +32,10 @@ public interface UserService {
      * */
     User loginUser(String email, String text,boolean type);
 
-    /*找回密码部分
-     *
+    /*
+     *修改密码
      * */
-    String retrievePassword(String username); //根据用户名查询密码并返回，调用此方法的前提是验证码输入正确
+    void updatePassword(String email,String newPassword);
 
     /*通用部分*/
     List<User> listUser(); //获取数据库中的所有用户 xzx

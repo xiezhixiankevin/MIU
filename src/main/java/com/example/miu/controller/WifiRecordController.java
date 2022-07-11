@@ -1,5 +1,6 @@
 package com.example.miu.controller;
 
+import com.example.miu.pojo.table.User;
 import com.example.miu.pojo.table.WifiRecord;
 import com.example.miu.service.WifiRecordService;
 import com.example.miu.utils.Global;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * <Description> WifiRecordController
@@ -29,6 +30,8 @@ public class WifiRecordController {
     @Autowired
     private WifiRecordService wifiRecordService;
 
+    private List<User> aliveUserList = new ArrayList<>();
+
     @PostMapping("/addWifiRecord")
     @ResponseBody
     public ReturnObject<String> addWifiRecord(WifiRecord wifiRecord){
@@ -46,6 +49,7 @@ public class WifiRecordController {
                     wifiRecordService.wifiRecord2Extend(wifiRecord),
                     wifiRecordService.wifiRecordList2Extend(wifiRecordService.listWifiRecordByAreaId(wifiRecord.getAreaId()))
             );
+
             return new ReturnObject<>(Global.SUCCESS,result);
         }
         return new ReturnObject<>(Global.FAIL,null);
@@ -61,6 +65,15 @@ public class WifiRecordController {
         if (wifiRecord.getStrength() == null)
             return false;
         return true;
+    }
+
+    private synchronized void addAliveUser(User user){
+        //首先遍历list,看看这个user是不是已经存在
+        for (User user1 : aliveUserList) {
+            if (user1.getId() == user.getId()){
+                //
+            }
+        }
     }
 
 }

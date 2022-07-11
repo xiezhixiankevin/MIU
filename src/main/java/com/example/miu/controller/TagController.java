@@ -8,12 +8,10 @@ import com.example.miu.utils.Global;
 import com.example.miu.utils.ReturnObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
+import java.util.*;
 
 /**
  * <Description> TagController
@@ -61,6 +59,11 @@ public class TagController {
             return new ReturnObject<>(Global.SUCCESS,"200");
         }
         return new ReturnObject<>(Global.FAIL,"-1");
+    }
+
+    @GetMapping("/listTagByAreaId")
+    public ReturnObject<List<Tag>> listTagByAreaId(Integer areaId){
+        return new ReturnObject<>(Global.SUCCESS, tagService.listTagByAreaId(areaId));
     }
 
     private boolean checkTag(Tag tag){
