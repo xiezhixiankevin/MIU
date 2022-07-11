@@ -1,6 +1,7 @@
 package com.example.miu.service.impl;
 
 import cn.hutool.json.JSONUtil;
+import com.example.miu.cache.CIMCache;
 import com.example.miu.cache.TokenCache;
 import com.example.miu.constant.enums.RespEnum;
 import com.example.miu.constant.exception.MIUException;
@@ -46,7 +47,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-
+    @Resource
+    private CIMCache cimCache;
     @Autowired
     private EmailService emailService;
     @Resource
@@ -102,6 +104,8 @@ public class UserServiceImpl implements UserService {
 
         if(user != null && user.getId() != null){
             tokenCache.setDataToCache(String.valueOf(user.getId()), String.valueOf(session.getId()));
+            cimCache.setDataToCache(user.getEmail(), String.valueOf(session.getId()));
+            user.setSessionId(String.valueOf(session.getId()));
         }
         log.info("session:{}",session);
         //通过验证码登录,直接返回user,之前已经校验过验证码
