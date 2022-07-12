@@ -5,7 +5,7 @@ import com.example.miu.constant.exception.MIUException;
 import com.example.miu.mapper.UserMapper;
 import com.example.miu.pojo.table.User;
 
-import com.example.miu.mapper.UserMapper;
+
 import com.example.miu.pojo.table.UserExample;
 
 import com.example.miu.service.EmailService;
@@ -14,10 +14,10 @@ import com.example.miu.service.UserService;
 import com.example.miu.utils.Global;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+
 
 import java.io.File;
-import java.util.Collection;
+
 import java.util.List;
 
 /**
@@ -78,6 +78,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginUser(String email, String text,boolean type) {
         User user = getUserByEmail(email);
+        if(user == null)
+            return null;
         if (type == Global.LOGIN_PASSWORD){
             if (user.getPassword().equals(text)){
                 return user;

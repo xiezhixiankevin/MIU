@@ -1,6 +1,8 @@
 package com.example.miu.pojo.table;
 
-public class CommentOfTag {
+import java.io.Serializable;
+
+public class CommentOfTag implements Serializable {
     private Integer userId;
 
     private Integer tagId;

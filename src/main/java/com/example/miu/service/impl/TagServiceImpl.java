@@ -42,4 +42,11 @@ public class TagServiceImpl implements TagService {
         return tagMapper.selectByExample(tagExample);
     }
 
+    @Override
+    public List<Tag> listTagByUserId(Integer id) {
+        TagExample tagExample = new TagExample();
+        tagExample.createCriteria().andUserIdEqualTo(id);
+        return tagMapper.selectByExample(tagExample);
+    }
+
 }

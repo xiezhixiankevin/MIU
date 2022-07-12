@@ -1,17 +1,16 @@
 package com.example.miu.pojo.table;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TracingPointExample {
+public class TraceExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TracingPointExample() {
+    public TraceExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,253 +164,333 @@ public class TracingPointExample {
             return (Criteria) this;
         }
 
-        public Criteria andPointIsNull() {
-            addCriterion("point is null");
+        public Criteria andTraceNameIsNull() {
+            addCriterion("trace_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andPointIsNotNull() {
-            addCriterion("point is not null");
+        public Criteria andTraceNameIsNotNull() {
+            addCriterion("trace_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPointEqualTo(String value) {
-            addCriterion("point =", value, "point");
+        public Criteria andTraceNameEqualTo(String value) {
+            addCriterion("trace_name =", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointNotEqualTo(String value) {
-            addCriterion("point <>", value, "point");
+        public Criteria andTraceNameNotEqualTo(String value) {
+            addCriterion("trace_name <>", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointGreaterThan(String value) {
-            addCriterion("point >", value, "point");
+        public Criteria andTraceNameGreaterThan(String value) {
+            addCriterion("trace_name >", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointGreaterThanOrEqualTo(String value) {
-            addCriterion("point >=", value, "point");
+        public Criteria andTraceNameGreaterThanOrEqualTo(String value) {
+            addCriterion("trace_name >=", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointLessThan(String value) {
-            addCriterion("point <", value, "point");
+        public Criteria andTraceNameLessThan(String value) {
+            addCriterion("trace_name <", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointLessThanOrEqualTo(String value) {
-            addCriterion("point <=", value, "point");
+        public Criteria andTraceNameLessThanOrEqualTo(String value) {
+            addCriterion("trace_name <=", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointLike(String value) {
-            addCriterion("point like", value, "point");
+        public Criteria andTraceNameLike(String value) {
+            addCriterion("trace_name like", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointNotLike(String value) {
-            addCriterion("point not like", value, "point");
+        public Criteria andTraceNameNotLike(String value) {
+            addCriterion("trace_name not like", value, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointIn(List<String> values) {
-            addCriterion("point in", values, "point");
+        public Criteria andTraceNameIn(List<String> values) {
+            addCriterion("trace_name in", values, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointNotIn(List<String> values) {
-            addCriterion("point not in", values, "point");
+        public Criteria andTraceNameNotIn(List<String> values) {
+            addCriterion("trace_name not in", values, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointBetween(String value1, String value2) {
-            addCriterion("point between", value1, value2, "point");
+        public Criteria andTraceNameBetween(String value1, String value2) {
+            addCriterion("trace_name between", value1, value2, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andPointNotBetween(String value1, String value2) {
-            addCriterion("point not between", value1, value2, "point");
+        public Criteria andTraceNameNotBetween(String value1, String value2) {
+            addCriterion("trace_name not between", value1, value2, "traceName");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdIsNull() {
-            addCriterion("tag_id is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdIsNotNull() {
-            addCriterion("tag_id is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdEqualTo(Integer value) {
-            addCriterion("tag_id =", value, "tagId");
+        public Criteria andUserIdEqualTo(Integer value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdNotEqualTo(Integer value) {
-            addCriterion("tag_id <>", value, "tagId");
+        public Criteria andUserIdNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdGreaterThan(Integer value) {
-            addCriterion("tag_id >", value, "tagId");
+        public Criteria andUserIdGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("tag_id >=", value, "tagId");
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdLessThan(Integer value) {
-            addCriterion("tag_id <", value, "tagId");
+        public Criteria andUserIdLessThan(Integer value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdLessThanOrEqualTo(Integer value) {
-            addCriterion("tag_id <=", value, "tagId");
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdIn(List<Integer> values) {
-            addCriterion("tag_id in", values, "tagId");
+        public Criteria andUserIdIn(List<Integer> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdNotIn(List<Integer> values) {
-            addCriterion("tag_id not in", values, "tagId");
+        public Criteria andUserIdNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdBetween(Integer value1, Integer value2) {
-            addCriterion("tag_id between", value1, value2, "tagId");
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTagIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("tag_id not between", value1, value2, "tagId");
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIsNull() {
-            addCriterion("add_time is null");
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIsNotNull() {
-            addCriterion("add_time is not null");
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeEqualTo(Date value) {
-            addCriterion("add_time =", value, "addTime");
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotEqualTo(Date value) {
-            addCriterion("add_time <>", value, "addTime");
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThan(Date value) {
-            addCriterion("add_time >", value, "addTime");
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("add_time >=", value, "addTime");
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThan(Date value) {
-            addCriterion("add_time <", value, "addTime");
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThanOrEqualTo(Date value) {
-            addCriterion("add_time <=", value, "addTime");
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIn(List<Date> values) {
-            addCriterion("add_time in", values, "addTime");
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotIn(List<Date> values) {
-            addCriterion("add_time not in", values, "addTime");
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeBetween(Date value1, Date value2) {
-            addCriterion("add_time between", value1, value2, "addTime");
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotBetween(Date value1, Date value2) {
-            addCriterion("add_time not between", value1, value2, "addTime");
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdIsNull() {
-            addCriterion("trace_id is null");
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdIsNotNull() {
-            addCriterion("trace_id is not null");
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdEqualTo(Integer value) {
-            addCriterion("trace_id =", value, "traceId");
+        public Criteria andAreaIdIsNull() {
+            addCriterion("area_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdNotEqualTo(Integer value) {
-            addCriterion("trace_id <>", value, "traceId");
+        public Criteria andAreaIdIsNotNull() {
+            addCriterion("area_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdGreaterThan(Integer value) {
-            addCriterion("trace_id >", value, "traceId");
+        public Criteria andAreaIdEqualTo(Integer value) {
+            addCriterion("area_id =", value, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("trace_id >=", value, "traceId");
+        public Criteria andAreaIdNotEqualTo(Integer value) {
+            addCriterion("area_id <>", value, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdLessThan(Integer value) {
-            addCriterion("trace_id <", value, "traceId");
+        public Criteria andAreaIdGreaterThan(Integer value) {
+            addCriterion("area_id >", value, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdLessThanOrEqualTo(Integer value) {
-            addCriterion("trace_id <=", value, "traceId");
+        public Criteria andAreaIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("area_id >=", value, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdIn(List<Integer> values) {
-            addCriterion("trace_id in", values, "traceId");
+        public Criteria andAreaIdLessThan(Integer value) {
+            addCriterion("area_id <", value, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdNotIn(List<Integer> values) {
-            addCriterion("trace_id not in", values, "traceId");
+        public Criteria andAreaIdLessThanOrEqualTo(Integer value) {
+            addCriterion("area_id <=", value, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdBetween(Integer value1, Integer value2) {
-            addCriterion("trace_id between", value1, value2, "traceId");
+        public Criteria andAreaIdIn(List<Integer> values) {
+            addCriterion("area_id in", values, "areaId");
             return (Criteria) this;
         }
 
-        public Criteria andTraceIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("trace_id not between", value1, value2, "traceId");
+        public Criteria andAreaIdNotIn(List<Integer> values) {
+            addCriterion("area_id not in", values, "areaId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaIdBetween(Integer value1, Integer value2) {
+            addCriterion("area_id between", value1, value2, "areaId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAreaIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("area_id not between", value1, value2, "areaId");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathIsNull() {
+            addCriterion("image_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathIsNotNull() {
+            addCriterion("image_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathEqualTo(String value) {
+            addCriterion("image_path =", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotEqualTo(String value) {
+            addCriterion("image_path <>", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathGreaterThan(String value) {
+            addCriterion("image_path >", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathGreaterThanOrEqualTo(String value) {
+            addCriterion("image_path >=", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathLessThan(String value) {
+            addCriterion("image_path <", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathLessThanOrEqualTo(String value) {
+            addCriterion("image_path <=", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathLike(String value) {
+            addCriterion("image_path like", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotLike(String value) {
+            addCriterion("image_path not like", value, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathIn(List<String> values) {
+            addCriterion("image_path in", values, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotIn(List<String> values) {
+            addCriterion("image_path not in", values, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathBetween(String value1, String value2) {
+            addCriterion("image_path between", value1, value2, "imagePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagePathNotBetween(String value1, String value2) {
+            addCriterion("image_path not between", value1, value2, "imagePath");
             return (Criteria) this;
         }
     }

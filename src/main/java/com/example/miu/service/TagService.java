@@ -20,7 +20,9 @@ public interface TagService {
     //更新标记点
     void updateTag(Tag tag);
 
-    //
+
     List<Tag> listTagByAreaId(Integer id);
+
+    List<Tag> listTagByUserId(Integer id);
 
 }

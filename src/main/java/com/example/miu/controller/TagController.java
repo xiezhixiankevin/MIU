@@ -66,6 +66,11 @@ public class TagController {
         return new ReturnObject<>(Global.SUCCESS, tagService.listTagByAreaId(areaId));
     }
 
+    @GetMapping("/listTagByUserId")
+    public ReturnObject<List<Tag>> listTagByUserId(Integer userId){
+        return new ReturnObject<>(Global.SUCCESS, tagService.listTagByUserId(userId));
+    }
+
     private boolean checkTag(Tag tag){
         if (tag.getAreaId() == null ||tag.getX() == null ||tag.getY()==null||tag.getUserId() == null){
             return false;

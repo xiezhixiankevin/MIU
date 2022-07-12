@@ -3,6 +3,7 @@ package com.example.miu.pojo.table;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @ToString
 public class User implements Serializable {
@@ -21,6 +22,45 @@ public class User implements Serializable {
     private String description;
 
     private Boolean ifShare;
+
+
+    //非数据库字段
+    private Integer nowArea;
+    private Float x;
+    private Float y;
+    private Date date = new Date();
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getNowArea() {
+        return nowArea;
+    }
+
+    public void setNowArea(Integer nowArea) {
+        this.nowArea = nowArea;
+    }
+
+    public Float getX() {
+        return x;
+    }
+
+    public void setX(Float x) {
+        this.x = x;
+    }
+
+    public Float getY() {
+        return y;
+    }
+
+    public void setY(Float y) {
+        this.y = y;
+    }
 
     public Integer getId() {
         return id;

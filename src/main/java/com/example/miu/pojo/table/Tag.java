@@ -1,8 +1,9 @@
 package com.example.miu.pojo.table;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Tag {
+public class Tag implements Serializable {
     private Integer id;
 
     private String tagDescription;
