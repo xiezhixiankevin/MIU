@@ -14,7 +14,8 @@ public enum RespEnum {
     USER_NOT_EXIT(1000,"账号不存在"),
     ACCOUNT_INVALID(1001,"账号或密码错误"),
     USER_ID_NULL(1002,"用户对象或id为空"),
-    CODE_ERROR(1003,"验证码错误");
+    CODE_ERROR(1003,"验证码错误"),
+    CHANNEL_NOT_EXIST(2001,"区域频道不存在");
     private Integer code;
     private String message;
 
