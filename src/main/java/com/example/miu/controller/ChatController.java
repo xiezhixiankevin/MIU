@@ -59,4 +59,17 @@ public class ChatController {
             return BaseResp.failed(RespEnum.DEFAULT_FAIL);
         }
     }
+
+    @GetMapping("/channel/users")
+    public BaseResp getChannelUserList(@RequestParam("channel")String channel){
+        try{
+            return BaseResp.success(chatService.getChannelUserList(channel));
+        }catch (MIUException e){
+            log.error("ChatController joinChannel channel:{},e:",channel,e);
+            return BaseResp.failed(RespEnum.getRespEnumByCode(e.getCode()));
+        }catch (Exception e){
+            log.error("ChatController joinChannel channel:{},e:",channel,e);
+            return BaseResp.failed(RespEnum.DEFAULT_FAIL);
+        }
+    }
 }

@@ -16,11 +16,13 @@ import com.example.miu.pojo.table.ChatHisMessage;
 import com.example.miu.pojo.table.User;
 import com.example.miu.pojo.table.UserChannel;
 import com.example.miu.service.ChatService;
+import com.example.miu.service.UserService;
 import com.example.miu.utils.LoginUserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +39,8 @@ public class ChatServiceImpl implements ChatService {
     private ChatHisMapper chatHisMapper;
     @Resource
     private AreaMapper areaMapper;
+    @Resource
+    private UserService userService;
 
     @Override
     public void joinChannel(String channel) {
@@ -106,5 +110,15 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public Set<String> getChannelUserIds(String channel) {
         return channelUserSetCache.values(channel);
+    }
+
+    public Set<User> getChannelUserList(String channel){
+        Set<String> userIds = channelUserSetCache.values(channel);
+        Set<User> users = new HashSet<>();
+
+        for(String userId:userIds){
+            users.add(userService.getUserByEmail(userId));
+        }
+        return users;
     }
 }
