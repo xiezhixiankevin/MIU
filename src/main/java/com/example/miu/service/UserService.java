@@ -42,6 +42,7 @@ public interface UserService {
     List<User> listUserSelective(User user); //xzx
     User getUserByUserName(String username); //xzx
     User getUserByEmail(String email); //xzx
+    User getUserById(Integer id); //xzx
 
 
     boolean ifUserExisted(String email); //wkx

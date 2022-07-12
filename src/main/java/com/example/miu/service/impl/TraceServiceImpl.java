@@ -5,6 +5,7 @@ import com.example.miu.mapper.TraceMapper;
 import com.example.miu.mapper.TracingPointMapper;
 import com.example.miu.pojo.table.*;
 import com.example.miu.service.TraceService;
+import com.example.miu.utils.ArrayUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.regex.*;
@@ -72,6 +73,13 @@ public class TraceServiceImpl implements TraceService {
         TracingPointExample tracingPointExample = new TracingPointExample();
         tracingPointExample.createCriteria().andTraceIdEqualTo(traceId);
         List<TracingPoint> pointList = tracingPointMapper.selectByExample(tracingPointExample);
+        for (TracingPoint tracingPoint : pointList) {
+            String point = tracingPoint.getPoint();
+            List<Integer> integerList = ArrayUtil.str2IntegerList(point);
+            tracingPoint.setX(integerList.get(0));
+            tracingPoint.setY(integerList.get(1));
+            tracingPoint.setOrder(integerList.get(2));
+        }
         trace.setPointList(pointList);
     }
 
@@ -92,7 +100,7 @@ public class TraceServiceImpl implements TraceService {
         }
         for (TracingPoint tracingPoint : pointList) {
             tracingPoint.setTraceId(traceId);
-            tracingPointMapper.insert(tracingPoint);
+            addTracingPoint(tracingPoint);
         }
         return true;
     }

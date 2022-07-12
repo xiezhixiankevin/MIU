@@ -131,6 +131,11 @@ public class UserServiceImpl implements UserService {
         return userList.isEmpty()? null:userList.get(0);
     }
 
+    @Override
+    public User getUserById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
     public boolean ifUserExisted(String email) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andEmailEqualTo(email);

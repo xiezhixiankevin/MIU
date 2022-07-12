@@ -13,6 +13,8 @@ public class CommentOfTag implements Serializable {
 
     private String photoPath;
 
+    private String username;
+
     public Integer getUserId() {
         return userId;
     }
@@ -51,5 +53,13 @@ public class CommentOfTag implements Serializable {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath == null ? null : photoPath.trim();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
