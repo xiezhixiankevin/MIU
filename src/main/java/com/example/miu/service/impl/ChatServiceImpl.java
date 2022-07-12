@@ -10,6 +10,7 @@ import com.example.miu.constant.exception.MIUException;
 import com.example.miu.mapper.AreaMapper;
 import com.example.miu.mapper.ChannelMapper;
 import com.example.miu.mapper.ChatHisMapper;
+import com.example.miu.pojo.logic.ChatHisMessageDTO;
 import com.example.miu.pojo.logic.MessageDTO;
 import com.example.miu.pojo.table.Area;
 import com.example.miu.pojo.table.ChatHisMessage;
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -94,8 +96,19 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public List<ChatHisMessage> getChatHisByChannel(String channel) {
-        return chatHisMapper.selectByChannel(channel,System.currentTimeMillis());
+    public List<ChatHisMessageDTO> getChatHisByChannel(String channel) {
+        List<ChatHisMessage>messages=  chatHisMapper.selectByChannel(channel,System.currentTimeMillis());
+        List<ChatHisMessageDTO> chatHisMessageDTOS = new ArrayList<>();
+        for(ChatHisMessage chatHisMessage:messages){
+            ChatHisMessageDTO dto = new ChatHisMessageDTO();
+            dto.setChannelId(chatHisMessage.getChannelId());
+            dto.setMessage(JSON.parseObject(chatHisMessage.getMessage(),MessageDTO.class));
+            dto.setUser(userService.getUserByEmail(chatHisMessage.getUserId()));
+            dto.setType(chatHisMessage.getType());
+            dto.setCreateTime(chatHisMessage.getCreateTime());
+            chatHisMessageDTOS.add(dto);
+        }
+        return chatHisMessageDTOS;
     }
 
     @Override
