@@ -1,5 +1,6 @@
 package com.example.miu.service;
 
+import com.example.miu.pojo.logic.ChatHisMessageDTO;
 import com.example.miu.pojo.logic.MessageDTO;
 import com.example.miu.pojo.table.ChatHisMessage;
 import com.example.miu.pojo.table.User;
@@ -12,7 +13,7 @@ public interface ChatService {
     void leaveChannel(String channel);
     void initOnOpen(String userId);
     void addChatHis(MessageDTO message, String type,String userId);
-    List<ChatHisMessage> getChatHisByChannel(String channel);
+    List<ChatHisMessageDTO> getChatHisByChannel(String channel);
     void onClose(String userId);
 
     Set<String> getChannelUserIds(String channel);
