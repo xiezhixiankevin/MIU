@@ -1,9 +1,6 @@
 package com.example.miu.controller;
 
 
-import com.example.miu.Resp.BaseResp;
-import com.example.miu.constant.enums.RespEnum;
-import com.example.miu.constant.exception.MIUException;
 import com.example.miu.pojo.logic.Code;
 import com.example.miu.pojo.table.User;
 import com.example.miu.pojo.table.UserExample;
@@ -35,30 +32,25 @@ public class UserController {
 
 
     @PostMapping("/loginByCode")
-    public BaseResp<User> loginByCode(Code code){
-        try{
-            if (codeService.checkCode(code, Global.REGISTER_LOGIN) != Global.SUCCESS){
-                return BaseResp.failed(RespEnum.CODE_ERROR);
-            }
-            //然后检查邮箱是否存在
-            if (userService.ifUserExisted(code.getEmail())){
-                //在检查是不是有用户名
-                if (userService.ifEmailExistedButNoUsername(code.getEmail())){
-                    //没有用户名
-                    return BaseResp.failed(RespEnum.USER_NOT_EXIT);
-                }
-                User user = userService.loginUser(code.getEmail(), code.getCodeValue(),Global.LOGIN_CODE);
-                return BaseResp.success(user);
-            }else {
-                userService.registerUserOfEmail(code.getEmail());
-                return BaseResp.failed(RespEnum.USER_NOT_EXIT);
-            }
-        }catch (MIUException e){
-            return BaseResp.failed(RespEnum.getRespEnumByCode(e.getCode()));
-        }catch (Exception e){
-            return BaseResp.failed(RespEnum.DEFAULT_FAIL);
-        }
+    public ReturnObject<User> loginByCode(Code code){
         //首先检查验证码
+        if (codeService.checkCode(code, Global.REGISTER_LOGIN) != Global.SUCCESS){
+            return new ReturnObject<>(Global.CODE_ERROR,null);
+        }
+        //然后检查邮箱是否存在
+        if (userService.ifUserExisted(code.getEmail())){
+            //在检查是不是有用户名
+            if (userService.ifEmailExistedButNoUsername(code.getEmail())){
+                //没有用户名
+                return new ReturnObject<>(Global.SUCCESS_REGISTER_EMAIL,null);
+            }
+            User user = userService.loginUser(code.getEmail(), code.getCodeValue(),Global.LOGIN_CODE);
+            return new ReturnObject<>(Global.SUCCESS,user);
+        }else {
+            //否则先注册
+            userService.registerUserOfEmail(code.getEmail());
+            return new ReturnObject<>(Global.SUCCESS_REGISTER_EMAIL,null);
+        }
     }
 
     @PostMapping("/updatePassword")
