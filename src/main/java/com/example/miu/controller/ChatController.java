@@ -1,5 +1,6 @@
 package com.example.miu.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.miu.Resp.BaseResp;
 import com.example.miu.constant.enums.RespEnum;
 import com.example.miu.constant.exception.MIUException;
@@ -50,7 +51,7 @@ public class ChatController {
     @GetMapping("/channel/chathis")
     public BaseResp getChannelChatHis(@RequestParam("channel")String channel){
         try{
-            return BaseResp.success(chatService.getChatHisByChannel(channel));
+            return BaseResp.success(JSONObject.toJSONString(chatService.getChatHisByChannel(channel)));
         }catch (MIUException e){
             log.error("ChatController joinChannel channel:{},e:",channel,e);
             return BaseResp.failed(RespEnum.getRespEnumByCode(e.getCode()));
