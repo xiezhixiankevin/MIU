@@ -1,7 +1,6 @@
 package com.example.miu.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.json.JSONString;
 import com.alibaba.fastjson.JSON;
 import com.example.miu.cache.ChannelUserSetCache;
 import com.example.miu.cache.UserChannelCache;
@@ -18,7 +17,6 @@ import com.example.miu.pojo.table.User;
 import com.example.miu.pojo.table.UserChannel;
 import com.example.miu.service.ChatService;
 import com.example.miu.service.UserService;
-import com.example.miu.utils.LoginUserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
