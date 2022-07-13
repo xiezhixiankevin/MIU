@@ -119,7 +119,7 @@ public class WifiRecordController {
         while (iterator.hasNext()){
             User user = iterator.next();
             long sec = (date.getTime() - user.getDate().getTime())/1000;
-            if (sec >60){
+            if (sec >30){
                 //超过60s移除用户
                 iterator.remove();
             }

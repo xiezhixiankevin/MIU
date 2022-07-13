@@ -42,9 +42,9 @@
 <!--        <table tableName="area" domainObjectName="Area"/>-->
 <!--        <table tableName="user" domainObjectName="User"/>-->
 <!--        <table tableName="tag" domainObjectName="Tag"/>-->
-<!--        <table tableName="tag_user_comment" domainObjectName="CommentOfTag"/>-->
+        <table tableName="tag_user_comment" domainObjectName="Comment"/>
 <!--        <table tableName="tracing_point" domainObjectName="TracingPoint"/>-->
-        <table tableName="trace" domainObjectName="Trace"/>
+<!--        <table tableName="trace" domainObjectName="Trace"/>-->
 
 
     </context>

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.miu.Resp.BaseResp;
 import com.example.miu.constant.enums.RespEnum;
 import com.example.miu.constant.exception.MIUException;
+import com.example.miu.pojo.logic.ChatHisMessageDTO;
 import com.example.miu.service.ChatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -51,7 +53,8 @@ public class ChatController {
     @GetMapping("/channel/chathis")
     public BaseResp getChannelChatHis(@RequestParam("channel")String channel){
         try{
-            return BaseResp.success(JSONObject.toJSONString(chatService.getChatHisByChannel(channel)));
+            List<ChatHisMessageDTO> chatHisByChannel = chatService.getChatHisByChannel(channel);
+            return BaseResp.success(chatHisByChannel);
         }catch (MIUException e){
             log.error("ChatController joinChannel channel:{},e:",channel,e);
             return BaseResp.failed(RespEnum.getRespEnumByCode(e.getCode()));

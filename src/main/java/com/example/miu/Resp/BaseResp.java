@@ -17,7 +17,7 @@ public class BaseResp <T>{
         return new BaseResp(RespEnum.SUCCESS.getCode(), RespEnum.SUCCESS.getMessage(), null);
     }
     public static <T> BaseResp<T> success(T data){
-        return new BaseResp<>(RespEnum.SUCCESS.getCode(), RespEnum.SUCCESS.getMessage(), null);
+        return new BaseResp<>(RespEnum.SUCCESS.getCode(), RespEnum.SUCCESS.getMessage(), data);
     }
     public static BaseResp failed(RespEnum respEnum){
         return new BaseResp(respEnum.getCode(),respEnum.getMessage(),null);

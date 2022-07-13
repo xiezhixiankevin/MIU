@@ -1,6 +1,6 @@
 package com.example.miu.controller;
 
-import com.example.miu.pojo.table.CommentOfTag;
+import com.example.miu.pojo.table.Comment;
 import com.example.miu.service.CommentService;
 import com.example.miu.utils.Global;
 import com.example.miu.utils.ReturnObject;
@@ -27,15 +27,21 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/addComment")
-    public ReturnObject<String> addComment(CommentOfTag commentOfTag){
-        commentService.addComment(commentOfTag);
+    public ReturnObject<String> addComment(Comment comment){
+        commentService.addComment(comment);
         return new ReturnObject<>(Global.SUCCESS,"评论成功！");
     }
 
+    @PostMapping("/updateComment")
+    public ReturnObject<String> updateComment(Comment comment){
+        commentService.updateComment(comment);
+        return new ReturnObject<>(Global.SUCCESS,"点赞成功！");
+    }
+
     @GetMapping("/listCommentByTagId")
-    public ReturnObject<List<CommentOfTag>> listCommentByTagId(Integer tagId){
-        List<CommentOfTag> commentOfTagList = commentService.listCommentByTagId(tagId);
-        return new ReturnObject<>(Global.SUCCESS,commentOfTagList);
+    public ReturnObject<List<Comment>> listCommentByTagId(Integer tagId){
+        List<Comment> commentList = commentService.listCommentByTagId(tagId);
+        return new ReturnObject<>(Global.SUCCESS,commentList);
     }
 
 

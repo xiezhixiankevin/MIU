@@ -1,6 +1,7 @@
 package com.example.miu.service;
 
-import com.example.miu.pojo.table.CommentOfTag;
+import com.example.miu.pojo.table.Comment;
+
 import java.util.*;
 
 /**
@@ -14,8 +15,10 @@ import java.util.*;
  */
 public interface CommentService {
 
-    void addComment(CommentOfTag commentOfTag);
+    void addComment(Comment comment);
 
-    List<CommentOfTag> listCommentByTagId(Integer tagId);
+    void updateComment(Comment comment);
+
+    List<Comment> listCommentByTagId(Integer tagId);
 
 }

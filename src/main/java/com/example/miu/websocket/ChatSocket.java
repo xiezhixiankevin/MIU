@@ -6,7 +6,10 @@ import com.example.miu.pojo.logic.MessageDTO;
 import com.example.miu.pojo.table.User;
 import com.example.miu.service.ChatService;
 import com.example.miu.service.UserService;
+import com.example.miu.service.impl.ChatServiceImpl;
+import com.example.miu.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -25,10 +28,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @ServerEndpoint(value = "/chatSocket/{account}")
 @Slf4j
 public class ChatSocket{
-    @Resource
-    private ChatService chatService;
-    @Resource
-    private UserService userService;
+//    @Resource
+    public static ChatService chatService;
+//    @Resource
+    public static UserService userService;
 
     private static int loginCount = 0;
     private static Map<String, ChatSocket> users = new ConcurrentHashMap<>();
