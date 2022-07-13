@@ -1,7 +1,5 @@
 package com.example.miu.service.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.json.JSONString;
 import com.alibaba.fastjson.JSON;
 import com.example.miu.cache.ChannelUserSetCache;
 import com.example.miu.cache.UserChannelCache;
@@ -18,9 +16,9 @@ import com.example.miu.pojo.table.User;
 import com.example.miu.pojo.table.UserChannel;
 import com.example.miu.service.ChatService;
 import com.example.miu.service.UserService;
-import com.example.miu.utils.LoginUserUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -45,38 +43,28 @@ public class ChatServiceImpl implements ChatService {
     private UserService userService;
 
     @Override
-    public void joinChannel(String channel) {
-        User user = LoginUserUtil.getLoginUserInfo();
-        if(user == null){
-            log.error("ChatService joinChannel not in login status");
-            throw new MIUException(RespEnum.LOGIN_NEEDED);
-        }
+    public void joinChannel(String channel,String userId) {
         Area area = areaMapper.selectByPrimaryKey(Integer.valueOf(channel));
         if(area == null){
             log.error("ChatService joinChannel channel not exist. channelId:{}", channel);
             throw new MIUException(RespEnum.CHANNEL_NOT_EXIST);
         }
-        channelMapper.insertUserChannelInfo(user.getEmail(),channel);
-        channelUserSetCache.add(channel, user.getEmail());
-        userChannelCache.add(user.getEmail(),channel);
+        channelMapper.insertUserChannelInfo(userId,channel);
+        channelUserSetCache.add(channel, userId);
+        userChannelCache.add(userId,channel);
     }
 
     @Override
-    public void leaveChannel(String channel) {
-        User user = LoginUserUtil.getLoginUserInfo();
-        if(user == null){
-            log.error("ChatService joinChannel not in login status");
-            throw new MIUException(RespEnum.LOGIN_NEEDED);
-        }
-        channelMapper.deleteUserChannelInfo(user.getEmail(),channel);
-        channelUserSetCache.remove(channel, user.getEmail());
-        userChannelCache.remove(user.getEmail(),channel);
+    public void leaveChannel(String channel,String userId) {
+        channelMapper.deleteUserChannelInfo(userId,channel);
+        channelUserSetCache.remove(channel, userId);
+        userChannelCache.remove(userId,channel);
     }
 
     @Override
     public void initOnOpen(String userId) {
         List<UserChannel> userChannelList = channelMapper.selectByUserId(userId);
-        if(CollectionUtil.isEmpty(userChannelList)){
+        if(CollectionUtils.isEmpty(userChannelList)){
             return;
         }
         for(UserChannel userChannel : userChannelList){

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 public interface ChatService {
-    void joinChannel(String channel);
-    void leaveChannel(String channel);
+    void joinChannel(String channel,String userId);
+    void leaveChannel(String channel,String userId);
     void initOnOpen(String userId);
     void addChatHis(MessageDTO message, String type,String userId);
     List<ChatHisMessageDTO> getChatHisByChannel(String channel);
