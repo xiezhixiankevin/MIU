@@ -20,9 +20,9 @@ public class ChatController {
     private ChatService chatService;
 
     @GetMapping("/channel/join")
-    public BaseResp joinChannel(@RequestParam("channel")String channel){
+    public BaseResp joinChannel(@RequestParam("channel")String channel,@RequestParam("userId")String userId){
         try{
-            chatService.joinChannel(channel);
+            chatService.joinChannel(channel,userId);
             return BaseResp.success();
         }catch (MIUException e){
             log.error("ChatController joinChannel channel:{},e:",channel,e);
@@ -34,9 +34,9 @@ public class ChatController {
     }
 
     @GetMapping("/channel/leave")
-    public BaseResp leaveChannel(@RequestParam("channel")String channel){
+    public BaseResp leaveChannel(@RequestParam("channel")String channel,@RequestParam("userId")String userId){
         try{
-            chatService.leaveChannel(channel);
+            chatService.leaveChannel(channel,userId);
             return BaseResp.success();
         }catch (MIUException e){
             log.error("ChatController joinChannel channel:{},e:",channel,e);

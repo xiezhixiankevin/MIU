@@ -45,32 +45,22 @@ public class ChatServiceImpl implements ChatService {
     private UserService userService;
 
     @Override
-    public void joinChannel(String channel) {
-        User user = LoginUserUtil.getLoginUserInfo();
-        if(user == null){
-            log.error("ChatService joinChannel not in login status");
-            throw new MIUException(RespEnum.LOGIN_NEEDED);
-        }
+    public void joinChannel(String channel,String userId) {
         Area area = areaMapper.selectByPrimaryKey(Integer.valueOf(channel));
         if(area == null){
             log.error("ChatService joinChannel channel not exist. channelId:{}", channel);
             throw new MIUException(RespEnum.CHANNEL_NOT_EXIST);
         }
-        channelMapper.insertUserChannelInfo(user.getEmail(),channel);
-        channelUserSetCache.add(channel, user.getEmail());
-        userChannelCache.add(user.getEmail(),channel);
+        channelMapper.insertUserChannelInfo(userId,channel);
+        channelUserSetCache.add(channel, userId);
+        userChannelCache.add(userId,channel);
     }
 
     @Override
-    public void leaveChannel(String channel) {
-        User user = LoginUserUtil.getLoginUserInfo();
-        if(user == null){
-            log.error("ChatService joinChannel not in login status");
-            throw new MIUException(RespEnum.LOGIN_NEEDED);
-        }
-        channelMapper.deleteUserChannelInfo(user.getEmail(),channel);
-        channelUserSetCache.remove(channel, user.getEmail());
-        userChannelCache.remove(user.getEmail(),channel);
+    public void leaveChannel(String channel,String userId) {
+        channelMapper.deleteUserChannelInfo(userId,channel);
+        channelUserSetCache.remove(channel, userId);
+        userChannelCache.remove(userId,channel);
     }
 
     @Override
