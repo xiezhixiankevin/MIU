@@ -1,5 +1,7 @@
 package com.example.miu.service.impl;
 
+import cn.hutool.json.JSONUtil;
+import com.example.miu.cache.TokenCache;
 import com.example.miu.constant.enums.RespEnum;
 import com.example.miu.constant.exception.MIUException;
 import com.example.miu.mapper.UserMapper;
@@ -12,10 +14,16 @@ import com.example.miu.service.EmailService;
 
 import com.example.miu.service.UserService;
 import com.example.miu.utils.Global;
+import com.example.miu.utils.LoginUserUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.annotation.Resource;
 import java.io.File;
 
 import java.util.List;
@@ -31,14 +39,17 @@ import java.util.List;
  */
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
+
+    private static final long SESSION_TIME_OUT = 7200*1000L;
 
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private EmailService emailService;
-
+    @Resource
+    private TokenCache tokenCache;
 
     @Override
     public boolean registerUserOfEmail(String email) {
@@ -78,14 +89,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginUser(String email, String text,boolean type) {
         User user = getUserByEmail(email);
-        if(user == null)
-            return null;
-        if (type == Global.LOGIN_PASSWORD){
-            if (user.getPassword().equals(text)){
-                return user;
-            }
-            return null;
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(email, text);
+        SecurityUtils.getSubject().login(usernamePasswordToken);
+        if(!SecurityUtils.getSubject().isAuthenticated()){
+            throw new MIUException(RespEnum.ACCOUNT_INVALID);
         }
+        SecurityUtils.getSubject().getSession().setTimeout(SESSION_TIME_OUT);
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setAttribute("CORE_SESSION_INFO_KEY", JSONUtil.toJsonStr(user));
+        user = LoginUserUtil.getLoginUserInfo();
+
+        if(user != null && user.getId() != null){
+            tokenCache.setDataToCache(String.valueOf(user.getId()), String.valueOf(session.getId()));
+            user.setSessionId(String.valueOf(session.getId()));
+        }
+        log.info("session:{}",session);
         //通过验证码登录,直接返回user,之前已经校验过验证码
         return user;
     }
