@@ -89,6 +89,7 @@ public class ShiroConfig {
         Map<String, String> map = new LinkedHashMap<>();
         //登出
         map.put("/user/**","anon");
+        map.put("/code/sendCode","anon");
         map.put("/**","fauth");
         map.put("/logout", "logout");
         //对所有用户认证
