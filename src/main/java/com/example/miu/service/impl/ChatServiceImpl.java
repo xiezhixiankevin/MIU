@@ -101,10 +101,14 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public void onClose(String userId) {
-        Set<String> channels =  userChannelCache.values(userId);
-        userChannelCache.removeKey(userId);
-        for(String channel : channels){
-            channelUserSetCache.remove(channel,userId);
+        try {
+            Set<String> channels = userChannelCache.values(userId);
+            userChannelCache.removeKey(userId);
+            for (String channel : channels) {
+                channelUserSetCache.remove(channel, userId);
+            }
+        }catch (Exception e){
+            log.error("ChatService onClose e:",e);
         }
     }
 
