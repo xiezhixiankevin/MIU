@@ -38,7 +38,12 @@ public class KNN {
 			@Override
 			public int compare(KnnValueSort o1, KnnValueSort o2) {
 				// TODO Auto-generated method stub
-				return (o1.getDistance() < o2.getDistance()? 1:-1);
+				if (o1.getDistance() < o2.getDistance()){
+					return 1;
+				}else if (o1.getDistance() == o2.getDistance()){
+					return (o1.getDifference() < o2.getDifference()? -1:1);
+				}
+				return -1;
 			}
 		};
 		knnSort.sort(c);
@@ -98,39 +103,60 @@ public class KNN {
 		return numerator/denominator;
 	}
 	
+	public double calDifference(List<Integer> userStrength,List<Integer> sampleStrength){
+		double result = 0.0;
+		for (int i = 0; i < userStrength.size(); i++) {
+			double var1 = userStrength.get(i)/10.0;
+			double var2 = sampleStrength.get(i)/10.0;
+			result += (var1-var2)*(var1 - var2);
+		}
+		return result;
+	}
+
 
 	public Position mostFrequency(List<KnnValueSort> knnSort) {
-		Map<Position, Double> map = new HashMap<Position, Double>();
 
-		int i = 0;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+
 		for(KnnValueSort temp: knnSort) {
-			i++;
-			System.out.println(temp.getPosition().toString()+": "+temp.getDistance());
 
-			if(map.containsKey(temp.getPosition())) {
-				map.put(temp.getPosition(), map.get(temp.getPosition())+temp.getDistance());
+			if(map.containsKey(temp.getPosition().getLocation())) {
+				map.put(temp.getPosition().getLocation(),map.get(temp.getPosition().getLocation())+1);
 			}
 			else {
-				map.put(temp.getPosition(), temp.getDistance());
+				map.put(temp.getPosition().getLocation(),1);
 			}
 		}
-		
-		List<Map.Entry<Position, Double>> list = new ArrayList(map.entrySet());
+		//检查是不是所有分类均只有一个
+		Map<Integer,Integer> mapCheck = new HashMap<>();
+		Set<Map.Entry<String, Integer>> entries = map.entrySet();
+		for (Map.Entry<String, Integer> entry : entries) {
+			mapCheck.put(entry.getValue(),0);
+		}
+		if (mapCheck.size()==1 && mapCheck.containsKey(1)){
+			return knnSort.get(0).getPosition();
+		}
 
-		Comparator c = new Comparator<Map.Entry<Position, Double>>() {
+		List<Map.Entry<String, Integer>> list = new ArrayList(map.entrySet());
+
+		Comparator c = new Comparator<Map.Entry<String, Integer>>() {
 			@Override
-			public int compare(Map.Entry<Position, Double> o1, Map.Entry<Position, Double> o2) {
+			public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
 				// TODO Auto-generated method stub
-				return (o1.getValue() < o2.getValue()? 1:-1);
+				if (o1.getValue() <= o2.getValue()){
+					return 1;
+				}
+				return -1;
 			}
 		};
 		list.sort(c);
-		
-		System.out.println("position����Ƶ�Σ�");
-		for(Map.Entry<Position, Double> item : list) {
-			System.out.println(item.getKey().toString()+": "+item.getValue());
+
+		String key = list.get(0).getKey();
+		for (KnnValueSort knnValueSort : knnSort) {
+			if (knnValueSort.getPosition().getLocation().equals(key))
+				return knnValueSort.getPosition();
 		}
-		
-		return list.get(0).getKey();
+
+		return null;
 	}
 }

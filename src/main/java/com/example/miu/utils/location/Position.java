@@ -8,16 +8,19 @@ public class Position {
 	private float x;
 	private float y;
 	private int hashCode;
+	private String location;
 	
-	public Position(float x, float y) {
+	public Position(float x, float y,String location) {
 		this.x = x;
 		this.y = y;
+		this.location = location;
 		this.hashCode = Objects.hash(x,y);
 	}
 	
 	public Position(WifiRecordExtend areaWifiRecord) {
 		this.x = areaWifiRecord.getX();
 		this.y = areaWifiRecord.getY();
+		this.location = areaWifiRecord.getX().intValue() +","+areaWifiRecord.getY().intValue();
 		this.hashCode = Objects.hash(x,y);
 	}
 
@@ -55,5 +58,13 @@ public class Position {
 	
 	public float getY() {
 		return y;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
